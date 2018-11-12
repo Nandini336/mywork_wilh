@@ -1,0 +1,3114 @@
+<html>
+<head>
+
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery.min.3.2.1.js"></script>
+
+    <!--<script src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery-3.2.1.min.js"></script>
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery-migrate-1.4.1.min.js"></script>-->
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/showmonth.js"></script>
+	
+    <link rel="stylesheet" type="text/css" media="screen" href="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery-ui.css">
+
+     <style>
+        #divNew {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #divNew td,
+        #divNew th {
+
+            padding: 9px;
+        }
+
+
+
+        #divNew th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #2b85bc;
+            color: white;
+        }
+
+        .delBtn {
+            margin-top: 13px;
+            margin-left: -56px;
+            background-color: red;
+            height: 16px;
+            width: 16px;
+			color: white;
+            text-align: center;
+            padding: 1px -1px;
+            border-radius: 3px;
+        }
+		.delBtn:hover{
+		cursor: pointer;
+		}
+        .row {
+            border: 0px solid #cccccc;
+            width: 70px;
+            margin-top: -35px;
+
+        }
+        .addBtn {
+		    color: white;
+            margin-top: -20px;
+            margin-left: -3px;
+            background-color: green;
+            height: 16px;
+            width: 16px;
+            text-align: center;
+            padding: 1px -1px;
+            border-radius: 3px;
+        }
+		.addBtn:hover{
+		cursor: pointer;
+		
+		}
+        .row {
+            border: 0px solid #cccccc;
+            width: 70px;
+            margin-top: -35px;
+
+        }
+       .ui-datepicker-trigger{
+		padding:2px 0px 0px 10px;
+		margin-bottom: 1px;
+		}
+		
+		.ui-datepicker-trigger:hover{
+		
+		cursor: pointer;
+		}
+        .timesheet {
+            background-color: white;
+            width: 1258px;
+            height: 800px;
+            margin-left: -13px;
+            
+        }
+
+        .Heading {
+            text-align: center;
+            color: Black;
+            font-family: inherit;
+            font-weight: 600;
+            line-height: 1.1;
+            font-size: 30px;
+            margin-bottom: -18px;
+            margin-top: 20px;
+        }
+
+        .name {
+            color: Black;
+            font-family: arial, sans-serif;
+            font-size: 16px;
+            margin-left: 40px;
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+
+        .dropdown {
+            margin-right: 75px;
+            width: 110px;
+
+        }
+		.dropdown:hover{
+		cursor: pointer;
+		}
+        .statusLabel {
+            margin-left: 1023px;
+			padding: 11px;
+            padding: 11px;
+            margin-top: 22px;
+			font-weight:bold;
+        }
+
+        .statusClass {
+            font-weight: bold;
+            font-size: 17px;
+            color: red;
+            margin-top: 22px;
+        }
+
+        
+		
+		.divTableClass
+		{
+			 border: 1px solid #47494c;
+			margin-left: 33px;
+			    width: 1141px;
+			 border-top-color: grey;
+			
+		}
+		.headerClass
+		{
+		margin-left:50px !important;
+		}
+		
+		.submitDiv
+		{
+		background-color: #2b85bc;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-left: 400px;
+		width: 82px;
+		height: 22px;
+		
+		}
+
+		.saveDiv
+		{
+		background-color: #2b85bc;
+		color: white;
+		padding: 14px 20px;
+		margin: 52px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-left: 468px;
+		width: 82px;
+		height: 22px;
+		
+		}
+		.prevClass
+		{
+		background-color: #2b85bc;
+		color: white;
+		
+		margin: 52px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-left: 19px;
+		width: 50px;
+		height: 24px;
+		text-align:center;
+		
+		
+		}
+		.nextClass
+		{
+		background-color: #2b85bc;
+		color: white;
+		
+		margin: 52px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-left: 46px;
+		width: 50px;
+		height: 24px;
+		text-align:center;
+		
+		
+		}
+		.mainClass
+		{
+		    box-shadow: 0px 2px 14px 5px #dadada;
+			border-radius: 6px;
+			width: 1209px;
+			margin-left: 24px;
+			margin-top: 69px;
+			padding-bottom: 24px;
+		}
+		.imageClass{
+		    margin-bottom: -2px;
+			height: 26px;
+			width: 28px;
+		}
+		.imageUserClass{
+		    margin-bottom: -7px;
+			height: 26px;
+			width: 28px;
+		}
+		.imageSave
+		{    
+			margin-left: -3px;
+			margin-top: 1px;
+		}
+		.imageSubmit
+		{
+		margin-left: 65px;
+			margin-top: 0px;
+		}
+		.pSave
+		{
+		  
+			text-align: center;
+			font-size: 19px;
+			font-weight: bold;
+			margin-left: 24px;
+		}
+		.pSubmit
+		    margin-top: -42px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    margin-left: -9px;
+		}
+		
+		#addcomp:hover{
+		cursor: pointer;
+		}
+		
+		#addname:hover{
+		cursor: pointer;
+		}
+		.addcompany:hover{
+		cursor:pointer;
+		
+		}
+		
+		.btnAddSite:hover{
+		cursor:pointer;
+		}
+		.btnAddSite1:hover{
+		cursor:pointer;
+		}
+		.btnAddSite2:hover{
+		cursor:pointer;
+		}
+		.btnAddSite3:hover{
+		cursor:pointer;
+		}
+		.btnAddAct:hover{
+		cursor:pointer;
+		}
+		.btnAddAct1:hover{
+		cursor:pointer;
+		}
+		.btnAddAct2:hover{
+		cursor:pointer;
+		}
+		.btnAddAct3:hover{
+		cursor:pointer;
+		}
+		
+	.ui-widget-header .ui-icon
+	
+	{
+	background-image: url("/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/ui-icons_555555_256x240.png") !important;
+	}
+	
+	.fromClass
+	{
+	font-size: 18px;
+	font-weight: 600;
+	margin-left: 122px;
+	padding: 5px;
+	margin-top: -12px;
+	}
+	.weekClass
+	
+	{
+	font-size: 18px;
+	font-weight: 600;
+	margin-left: 122px;
+	}
+	.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	
+}
+
+#bg_blocking_layer {
+   position: fixed;
+   left: 0px;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   width: 100%; 
+   height: 100%;
+   margin: auto;
+   background-color: rgba(0,0,0,0.5);
+   z-index: 9998;
+}
+
+#layout_container {
+   font-size:36px;
+   margin-top:301px;
+   margin-left:610px;
+   
+   position: fixed;
+   left: 0px;
+   right: 0px;
+   bottom: 0px;
+   top: 0px;
+   width: 50%;
+   height: 30%;
+   color: white;
+   padding: 10px;
+   z-index: 9999;
+}
+    </style>
+	<script type="text/javascript">
+		
+			Date.prototype.getWeek = function() {
+				var onejan = new Date(this.getFullYear(),0,1);
+				var today = new Date(this.getFullYear(),this.getMonth(),this.getDate());
+				var dayOfYear = ((today - onejan +1)/86400000);
+				return Math.ceil(dayOfYear/7)
+			};
+				$(document).ready(function() {
+			SP.SOD.executeFunc('SP.js', 'SP.ClientContext', function()
+				{
+				$("#bg_blocking_layer").show();
+				var today = new Date();
+				var weekno = today.getWeek();
+				$(".weekNum").text(weekno);
+                loadlist();
+                loadsitelist();
+
+                loadcomplist();
+                loadactlist();
+
+				
+                var startDate;
+                var endDate;
+                $('.date-picker').datepicker({
+					dateFormat: 'dd/mm/yy',
+                    showOn: "button",
+                    buttonImage: "/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/calendar.gif",
+                    buttonImageOnly: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    showWeek: true,
+                    maxDate: 'today',
+                    firstDay: 1,
+                    showButtonPanel: true,
+                    onSelect: function(dateText, inst) {
+                        var date = $(this).datepicker('getDate');
+                        startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay()+1);
+                        endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
+                        var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
+                        $('#startDate').text($.datepicker.formatDate(dateFormat, startDate, inst.settings));
+                        $('#endDate').text($.datepicker.formatDate(dateFormat, endDate, inst.settings));
+                        $(this).val($.datepicker.formatDate(dateFormat, startDate, inst.settings) + " - " + $.datepicker.formatDate(dateFormat, endDate, inst.settings));
+                        
+						
+						var i = 1;
+                        $(".row").each(function() {
+                            $(this).val($.datepicker.formatDate(dateFormat, new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + i), inst.settings));
+					
+                            i++;
+							
+							
+                        });
+						$(".fromDate").text($.datepicker.formatDate(dateFormat, startDate, inst.settings) + " - " + $.datepicker.formatDate(dateFormat, endDate, inst.settings));
+					
+						onChangeDate("No");
+						
+						<!-- var selectedDate=new Date(dateText); -->
+						<!-- var weeknum = selectedDate.getWeek(); -->
+						var dateTextSplit=dateText.split('/');
+						var selectedDate=new Date(parseInt(dateTextSplit[2]),parseInt(dateTextSplit[1]) - 1,parseInt(dateTextSplit[0]));
+						var weeknum = selectedDate.getWeek();
+						$(".weekNum").text(weeknum);
+						<!--$(".weekNum").text($.datepicker.iso8601Week(new Date(dateText)));-->
+                    }
+                });
+				
+				
+				
+ 
+                $("#names").change(function() {
+                    if ($(this).val() == "AddName") {
+						 $(".rowAddName").show();
+                        $(".secAddName").show();
+                    } else {
+					$(".secAddName").hide();
+						if($("#names").val()!= "AddName" && $("#comp").val()!= "AddCompany"){
+						$(".rowAddName").hide();
+						}
+                        
+                    }
+                });
+                $("#site").change(function() {
+                    if ($(this).val() == "AddSite") {
+                        $(".secAddSite").show();
+						$(".1TdAdd").show();
+                    } else {
+                        $(".secAddSite").hide();
+						if($("#site").val()!= "AddSite" && $("#act").val()!= "AddActivity"){
+						$(".1TdAdd").hide();
+						}
+                    }
+                });
+                $("#comp").change(function() {
+                    if ($(this).val() == "AddCompany") {
+						$(".rowAddName").show();
+                        $(".secAddComp").show();
+						
+                    } else {
+						
+                        $(".secAddComp").hide();
+						if($("#names").val()!= "AddName" && $("#comp").val()!= "AddCompany"){
+						$(".rowAddName").hide();
+						}
+						
+                    }
+                });
+
+                $("#act").change(function() {
+                    if ($(this).val() == "AddActivity") {
+                        $(".secAddAct").show();
+						$(".1TdAdd").show();
+                    } else {
+                        $(".secAddAct").hide();
+						if($("#site").val()!= "AddSite" && $("#act").val()!= "AddActivity"){
+						$(".1TdAdd").hide();
+						}
+                    }
+                });
+                $("#site1").change(function() {
+                    if ($(this).val() == "AddOtherSite1") {
+                        $(".secAddSite1").show();
+						$(".2TdAdd").show();
+                    } else {
+                        $(".secAddSite1").hide();
+						if($("#site1").val()!= "AddOtherSite1" && $("#act1").val()!= "AddOtherAct1"){
+						$(".2TdAdd").hide();
+						}
+                    }
+                });
+                $("#act1").change(function() {
+                    if ($(this).val() == "AddOtherAct1") {
+                        $(".secAddAct1").show();
+						$(".2TdAdd").show();
+                    } else {
+                        $(".secAddAct1").hide();
+						if($("#site1").val()!= "AddOtherSite1" && $("#act1").val()!= "AddOtherAct1"){
+						$(".2TdAdd").hide();
+						}
+                    }
+                });
+                $("#site2").change(function() {
+                    if ($(this).val() == "AddOtherSite2") {
+                        $(".secAddSite2").show();
+						$(".3TdAdd").show();
+                    } else {
+                        $(".secAddSite2").hide();
+						if($("#site2").val()!= "AddOtherSite2" && $("#act2").val()!= "AddOtherAct2"){
+						$(".3TdAdd").hide();
+						}
+                    }
+                });
+                $("#act2").change(function() {
+                    if ($(this).val() == "AddOtherAct2") {
+                        $(".secAddAct2").show();
+						$(".3TdAdd").show();
+                    } else {
+                        $(".secAddAct2").hide();
+						if($("#site2").val()!= "AddOtherSite2" && $("#act2").val()!= "AddOtherAct2"){
+						$(".3TdAdd").hide();
+						}
+                    }
+                });
+                $("#site3").change(function() {
+                    if ($(this).val() == "AddOtherSite3") {
+                        $(".secAddSite3").show();
+						$(".4TdAdd").show();
+                    } else {
+                        $(".secAddSite3").hide();
+						if($("#site3").val()!= "AddOtherSite3" && $("#act3").val()!= "AddOtherAct3"){
+						$(".4TdAdd").hide();
+						}
+                    }
+                });
+                $("#act3").change(function() {
+                    if ($(this).val() == "AddOtherAct3") {
+                        $(".secAddAct3").show();
+						$(".4TdAdd").show();
+                    } else {
+                        $(".secAddAct3").hide();
+						if($("#site3").val()!= "AddOtherSite3" && $("#act3").val()!= "AddOtherAct3"){
+						$(".4TdAdd").hide();
+						}
+                    }
+                });
+                $(".addSiteBtn1").click(function() {
+					var flag = false;
+
+					$(".rowHrs").each(function(){
+					if($(this).val().trim() != ""){
+					flag = true;
+					}
+					});
+					if(flag){
+                    $(".addSiteClass1").show();
+					}
+					else{
+					alert("Before add the new row please give inputs in the available rows");
+					}
+
+                });
+                $(".addSiteBtn2").click(function() {
+					var flag = false;
+
+					$(".addHrs1").each(function(){
+					if($(this).val().trim() != ""){
+					flag = true;
+					}
+					});
+					if(flag){
+                    $(".addSiteClass2").show();
+					}
+					else{
+					alert("Before add the new row please give inputs in the available rows");
+					}
+
+
+
+
+                });
+                $(".addSiteBtn3").click(function() {
+
+                    var flag = false;
+
+					$(".addHrs2").each(function(){
+					if($(this).val().trim() != ""){
+					flag = true;
+					}
+					});
+					if(flag){
+                    $(".addSiteClass3").show();
+					}
+					else{
+					alert("Before add the new row please give inputs in the available rows");
+					}
+
+
+                });
+                $(".delSiteBtn2").click(function() {
+					var conf = confirm("Are you sure want to delete the data");
+					if(conf){
+					if($(".saveId2").text() != "")
+					{
+					var SiteUrl = _spPageContextInfo.webAbsoluteUrl;
+					var itemDelId = $(".saveId2").text();
+					var resultDelte = getDeleteData(SiteUrl, itemDelId);
+					resultDelte.done(function(){
+					alert("Time sheet Entry has been deleted");
+					onChangeDate("No");
+					
+					});
+					resultDelte.fail(function(arg) {
+							   alert(arg);
+					 });
+					}
+					else{
+                    $(".addSiteClass1").hide();
+					 loadaddsitelist1();
+					 loadaddactlist1();
+					 $(".secAddAct1").hide();
+					 $(".secAddSite1").hide();
+					}
+					}
+						
+                });
+                $(".delSiteBtn3").click(function() {
+					var conf = confirm("Are you sure want to delete the data");
+					if(conf){
+					if($(".saveId3").text() != "")
+					{
+					var SiteUrl = _spPageContextInfo.webAbsoluteUrl;
+					var itemDelId = $(".saveId3").text();
+					var resultDelte = getDeleteData(SiteUrl, itemDelId);
+					resultDelte.done(function(){
+					alert("Time sheet Entry has been deleted");
+					onChangeDate("No");
+					
+					});
+					resultDelte.fail(function(arg) {
+							   alert(arg);
+					 });
+					}
+					else{
+                    $(".addSiteClass2").hide();
+					 loadaddsitelist2();
+					 loadaddactlist2();
+					 $(".secAddAct2").hide();
+					 $(".secAddSite2").hide();
+					}
+					}
+
+                });
+                $(".delSiteBtn4").click(function() {
+					var conf = confirm("Are you sure want to delete the data");
+					if(conf){
+					if($(".saveId4").text() != "")
+					{
+					var SiteUrl = _spPageContextInfo.webAbsoluteUrl;
+					var itemDelId = $(".saveId4").text();
+					var resultDelte = getDeleteData(SiteUrl, itemDelId);
+					resultDelte.done(function(){
+					alert("Time sheet Entry has been deleted");
+					onChangeDate("No");
+					
+					});
+					resultDelte.fail(function(arg) {
+							   alert(arg);
+					 });
+					}
+					else{
+                    $(".addSiteClass3").hide();
+					 loadaddsitelist3();
+					 loadaddactlist3();
+					 $(".secAddAct3").hide();
+					 $(".secAddSite3").hide();
+					}
+                   }
+
+
+                });
+
+                $(".btnAddNewSite1").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addSiteValue = $(".txtNewSite1").val();
+
+                    if (!addSiteValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter Site name ");
+                    } else {
+                        $(".txtNewSite1 option:contains(" + addSiteValue + ")").attr('selected', 'selected');
+                        document.getElementById("addSiteId").disabled = true;
+
+
+
+
+                    }
+                });
+
+                $(".btnAddNewAct1").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addActValue = $(".txtNewAct1").val();
+
+                    if (!addActValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter Site name ");
+                    } else {
+                        $(".txtNewAct1 option:contains(" + addActValue + ")").attr('selected', 'selected');
+                        document.getElementById("addActId").disabled = true;
+                        $(".hrsTable").show();
+
+
+                    }
+
+                });
+
+                $(".btnAddName").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+
+                    var addTextValue = $(".txtAddName").val();
+
+                    if (addTextValue.trim() == "") {
+                        alert("Please Enter Name");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Names_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            alert('Name added Successfully');
+                            var resultLoad = loadlist();
+                            resultLoad.done(function() {
+                                
+                                $("#names option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                                $(".txtAddName").val("");
+                                if ($("#names").val() == "AddName") {
+								    
+                                    $(".secAddName").show();
+									$(".rowAddName").show();
+                                } else {
+									$(".rowAddName").hide();
+                                    if($("#names").val()!= "AddName" && $("#comp").val()!= "AddCompany"){
+									$(".rowAddName").hide();
+						}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+
+                $(".btnAddSite").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddSite").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Site_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            
+						
+
+                            var addFirstTextValue = $("#site1").val();
+                            var addSecondTextValue = $("#site2").val();
+                            var addThirdTextValue = $("#site3").val();
+
+                            loadaddsitelist1();
+                            loadaddsitelist2();
+                            loadaddsitelist3();
+							alert('Site Created Successfully');
+                            var resultLoad = loadsitelist();
+                            resultLoad.done(function() {
+                                
+                                
+								$("#site1").val(addFirstTextValue);
+								$("#site2").val(addSecondTextValue);
+								$("#site3").val(addThirdTextValue);
+								$("#site option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                                //$("#site1 option:contains(" + addFirstTextValue + ")").attr('selected', 'selected');
+                                //$("#site2 option:contains(" + addSecondTextValue + ")").attr('selected', 'selected');
+                                //$("#site3 option:contains(" + addThirdTextValue + ")").attr('selected', 'selected');
+                                $(".txtAddSite").val("");
+                                if ($("#site").val() == "AddSite") {
+                                    $(".secAddSite").show();
+									$(".1TdAdd").show();
+                                } else {
+                                    $(".secAddSite").hide();
+									if($("#site").val()!= "AddSite" && $("#act").val()!= "AddActivity"){
+									$(".1TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+
+                    }
+
+                });
+
+                $(".btnAddSite1").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddSite1").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Site_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            
+                            var addDefaultValue = $("#site").val();
+                            var addSecondTextValue = $("#site2").val();
+                            var addThirdTextValue = $("#site3").val();
+
+                            loadsitelist();
+                            loadaddsitelist2();
+                            loadaddsitelist3();
+							alert('Site Created Successfully');
+                            var resultLoad = loadaddsitelist1();
+                            resultLoad.done(function() {
+                                
+								$("#site").val(addDefaultValue);
+								$("#site2").val(addSecondTextValue);
+								$("#site3").val(addThirdTextValue);
+								$("#site1 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                               
+                                $(".txtAddSite1").val("");
+                                if ($("#site1").val() == "AddOtherSite1") {
+                                    $(".secAddSite1").show();
+									$(".2TdAdd").show();
+                                } else {
+                                    $(".secAddSite1").hide();
+									if($("#site1").val()!= "AddOtherSite1" && $("#act1").val()!= "AddOtherAct1"){
+									$(".2TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+
+                    }
+
+                });
+                $(".btnAddSite2").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddSite2").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Site_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                           
+
+                            var addDefaultValue = $("#site").val();
+                            var addFirstTextValue = $("#site1").val();
+                            var addThirdTextValue = $("#site3").val();
+                            loadsitelist();
+                            loadaddsitelist1();
+                            loadaddsitelist3();
+							alert('Site Created Successfully');
+                            var resultLoad = loadaddsitelist2();
+                            resultLoad.done(function() {
+                                
+                                
+	                             $("#site").val(addDefaultValue);
+								 $("#site1").val(addFirstTextValue);
+								 $("#site3").val(addThirdTextValue);
+                                $("#site2 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                              
+                                $(".txtAddSite2").val("");
+                                if ($("#site2").val() == "AddOtherSite2") {
+                                    $(".secAddSite2").show();
+									$(".3TdAdd").show();
+                                } else {
+                                    $(".secAddSite2").hide();
+									if($("#site2").val()!= "AddOtherSite2" && $("#act2").val()!= "AddOtherAct2"){
+									$(".3TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+
+                    }
+
+                });
+                $(".btnAddSite3").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddSite3").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Site_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            
+
+                            var addDefaultValue = $("#site").val();
+                            var addFirstTextValue = $("#site1").val();
+                            var addSecondTextValue = $("#site2").val();
+
+                            loadsitelist();
+                            loadaddsitelist1();
+                            loadaddsitelist2();
+							alert('Site Created Successfully');
+                            var resultLoad = loadaddsitelist3();
+                            resultLoad.done(function() {
+                                
+                                  $("#site").val(addDefaultValue);
+								 $("#site1").val(addFirstTextValue);
+								$("#site2").val(addSecondTextValue);
+                                $("#site3 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+
+                                $(".txtAddSite3").val("");
+                                if ($("#site3").val() == "AddOtherSite3") {
+                                    $(".secAddSite3").show();
+									$(".4TdAdd").show();
+                                } else {
+                                    $(".secAddSite3").hide();
+									if($("#site3").val()!= "AddOtherSite3" && $("#act3").val()!= "AddOtherAct3"){
+									$(".4TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+
+                    }
+
+                });
+				
+				
+                $(".btnAddComp").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddComp").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Company_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            alert('Company added Successfully');
+                            var resultLoad = loadcomplist();
+                            resultLoad.done(function() {
+                              
+                                $("#comp option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                                $(".txtAddComp").val("");
+                                if ($("#comp").val() == "AddCompany") {
+									
+                                    $(".secAddComp").show();
+									$(".rowAddName").show();
+                                } else {
+                                    $(".secAddComp").hide();
+									 if($("#names").val()!= "AddName" && $("#comp").val()!= "AddCompany"){
+									$(".rowAddName").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+
+
+                $(".btnAddAct").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddAct").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Activity_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                          
+
+
+                            var addFirstTextValue = $("#act1").val();
+                            var addSecondTextValue = $("#act2").val();
+                            var addThirdTextValue = $("#act3").val();
+
+                            loadaddactlist1();
+                            loadaddactlist2();
+                            loadaddactlist3();
+							alert('Activity Created Successfully');
+                            var resultLoad = loadactlist();
+                            resultLoad.done(function() {
+								 $("#act1").val(addFirstTextValue);
+								$("#act2").val(addSecondTextValue);
+								$("#act3").val(addThirdTextValue);
+                                $("#act option:contains(" + addTextValue + ")").attr('selected', 'selected');
+
+                            
+                                $(".txtAddAct").val("");
+                                if ($("#act").val() == "AddActivity") {
+                                    $(".secAddAct").show();
+									$(".1TdAdd").show();
+                                } else {
+                                    $(".secAddAct").hide();
+									if($("#site").val()!= "AddSite" && $("#act").val()!= "AddActivity"){
+									$(".1TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+                $(".btnAddAct1").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddAct1").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Activity_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                            
+
+                            var addDefaultTextValue = $("#act").val();
+                            var addSecondTextValue = $("#act2").val();
+                            var addThirdTextValue = $("#act3").val();
+
+                            loadactlist();
+                            loadaddactlist2();
+                            loadaddactlist3();
+							alert('Activity Created Successfully');
+                            var resultLoad = loadaddactlist1();
+                            resultLoad.done(function() {
+								$("#act").val(addDefaultTextValue);
+                                $("#act2").val(addSecondTextValue);
+								$("#act3").val(addThirdTextValue);
+								$("#act1 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                                
+                                $(".txtAddAct1").val("");
+                                if ($("#act1").val() == "AddOtherAct1") {
+                                    $(".secAddAct1").show();
+									$(".2TdAdd").show();
+                                } else {
+                                    $(".secAddAct1").hide();
+									if($("#site1").val()!= "AddOtherSite1" && $("#act1").val()!= "AddOtherAct1"){
+									$(".2TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+                $(".btnAddAct2").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddAct2").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Activity_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                       
+
+                            var addDefaultTextValue = $("#act").val();
+                            var addFirstTextValue = $("#act1").val();
+                            var addThirdTextValue = $("#act3").val();
+
+                            loadactlist();
+                            loadaddactlist1();
+                            loadaddactlist3();
+							alert('Activity Created Successfully');
+                            var resultLoad = loadaddactlist2();
+                            resultLoad.done(function() {
+								$("#act").val(addDefaultTextValue);
+                               $("#act1").val(addFirstTextValue);
+								$("#act3").val(addThirdTextValue);
+                               $("#act2 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                               
+                                $(".txtAddAct2").val("");
+                                if ($("#act2").val() == "AddOtherAct2") {
+                                    $(".secAddAct2").show();
+										$(".3TdAdd").show();
+                                } else {
+                                    $(".secAddAct2").hide();
+									if($("#site2").val()!= "AddOtherSite2" && $("#act2").val()!= "AddOtherAct2"){
+									$(".3TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+                $(".btnAddAct3").click(function() {
+                    var siteMainUrl_Form = _spPageContextInfo.webAbsoluteUrl;
+                    var addTextValue = $(".txtAddAct3").val();
+                    if (!addTextValue.match(/^[a-zA-Z]+$/)) {
+                        alert("Please enter name ");
+                    } else {
+                        var result = addFormItem(siteMainUrl_Form, "Activity_Timesheet", "Title", addTextValue);
+                        result.done(function() {
+                           
+
+                            var addDefaultTextValue = $("#act").val();
+                            var addFirstTextValue = $("#act1").val();
+                            var addSecondTextValue = $("#act2").val();
+
+                            loadactlist();
+                            loadaddactlist1();
+                            loadaddactlist2();
+							alert('Activity Created Successfully');
+                            var resultLoad = loadaddactlist3();
+                            resultLoad.done(function() {
+								$("#act").val(addDefaultTextValue);
+								$("#act1").val(addFirstTextValue);
+								$("#act2").val(addSecondTextValue);
+								$("#act3 option:contains(" + addTextValue + ")").attr('selected', 'selected');
+                                
+                                $(".txtAddAct3").val("");
+                                if ($("#act3").val() == "AddOtherAct3") {
+                                    $(".secAddAct3").show();
+									$(".4TdAdd").show();
+                                } else {
+                                    $(".secAddAct3").hide();
+									if($("#site3").val()!= "AddOtherSite3" && $("#act3").val()!= "AddOtherAct3"){
+									$(".4TdAdd").hide();
+									}
+                                }
+                            });
+                            resultLoad.fail(function(arg) {
+                                alert(arg);
+                            });
+
+                        });
+                        result.fail(function(arg) {
+                            alert(arg);
+                        });
+                    }
+
+                });
+				$(".submitBtn").click(function() {
+				
+				var yearInfo=$('.date1').val();
+				yearData=yearInfo.split('/')[2];
+                var drpFlag = true;
+				$(".dropdown").each(function(){
+				if($(this).val() == "AddActivity" || $(this).val() == "AddSite" || $(this).val() == "AddName" || $(this).val() == "AddCompany"|| $(this).val() == "AddOtherSite1"|| $(this).val() == "AddOtherSite2"|| $(this).val() == "AddOtherSite3"|| $(this).val() == "AddOtherAct1"|| $(this).val() == "AddOtherAct2"|| $(this).val() == "AddOtherAct3"){
+				drpFlag = false;
+				}
+				});
+				if(drpFlag){
+				var siteActVal1 = ($("#site").val() + $("#act").val());
+				var siteActVal2 = ($("#site1").val() + $("#act1").val());
+				var siteActVal3 = ($("#site2").val() + $("#act2").val());
+				var siteActVal4 = ($("#site3").val() + $("#act3").val());
+				var disSite2 = $(".addSiteClass1").css("display");
+				var disSite3 = $(".addSiteClass2").css("display");
+				var disSite4 = $(".addSiteClass3").css("display");
+				
+				if((siteActVal1 != siteActVal2 || disSite2 == "none") && (siteActVal1 != siteActVal3 || disSite3 == "none") && (siteActVal1 != siteActVal4 || disSite4 == "none") && (siteActVal2 != siteActVal3 || disSite3 == "none") && (siteActVal2 != siteActVal4|| disSite4 == "none") && (siteActVal3 != siteActVal4 || disSite4 == "none"))
+				{
+					var emptyRowHours = true;
+
+					if($(".addSiteClass1").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs1").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+
+					if($(".addSiteClass2").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs2").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+
+					if($(".addSiteClass3").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs3").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+					
+					if(emptyRowHours){
+					
+					var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+
+					
+
+
+                    var addFieldValue = $("#names").val();
+                    var lkaddFieldValue = new SP.FieldLookupValue();
+                    lkaddFieldValue.set_lookupId(addFieldValue);
+
+                    var addSiteValue = $("#site").val();
+                    var lkaddSiteValue = new SP.FieldLookupValue();
+                    lkaddSiteValue.set_lookupId(addSiteValue);
+
+
+                    var addCompValue = $("#comp").val();
+                    var lkaddCompValue = new SP.FieldLookupValue();
+                    lkaddCompValue.set_lookupId(addCompValue);
+
+                    var addActValue = $("#act").val();
+                    var lkaddActValue = new SP.FieldLookupValue();
+					lkaddActValue.set_lookupId(addActValue);
+					
+					
+					var addNewSiteValue1 = $("#site1").val();
+					var lkaddNewSiteValue1 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue1.set_lookupId(addNewSiteValue1);
+
+					var addNewActValue1 = $("#act1").val();
+					var lkaddNewActValue1 = new SP.FieldLookupValue();
+                    lkaddNewActValue1.set_lookupId(addNewActValue1);
+					
+					var addNewSiteValue2 = $("#site2").val();
+					var lkaddNewSiteValue2 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue2.set_lookupId(addNewSiteValue2);
+
+					var addNewActValue2 = $("#act2").val();
+					var lkaddNewActValue2 = new SP.FieldLookupValue();
+                    lkaddNewActValue2.set_lookupId(addNewActValue2);
+					
+					var addNewSiteValue3 = $("#site3").val();
+					var lkaddNewSiteValue3 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue3.set_lookupId(addNewSiteValue3);
+
+					var addNewActValue3 = $("#act3").val();
+					var lkaddNewActValue3 = new SP.FieldLookupValue();
+                    lkaddNewActValue3.set_lookupId(addNewActValue3);
+
+					var addWeekNum=$(".weekNum").text();
+					var addStatusData=$(".statusClass").text();
+					var saveName = $("#names").find("option:selected").text();
+					var saveSite = $("#site").find("option:selected").text();
+					var saveComp = $("#comp").find("option:selected").text();
+					var saveAct = $("#act").find("option:selected").text();
+					
+					var saveSite1 = $("#site1").find("option:selected").text();
+					var saveAct1 = $("#act1").find("option:selected").text();
+					
+					var saveSite2 = $("#site2").find("option:selected").text();
+					var saveAct2 = $("#act2").find("option:selected").text();
+					
+					var saveSite3 = $("#site3").find("option:selected").text();
+					var saveAct3 = $("#act3").find("option:selected").text();
+					
+					
+					var dateDateInput1 = "";
+					var dateHrsInput1 = "";
+                    var n = 1;
+                    $(".row").each(function() {
+                            dateDateInput1 += $(".date" + n).val() + ";";
+                            dateHrsInput1 += $(".Hrs" + n).val() + ";";
+							n++;
+                    });
+					var countAdd = 0;
+					if($(".saveId1").text().trim() != ""){
+					countAdd = 1;
+					$("#bg_blocking_layer").show();
+						var resultUpdate1=updateListItem(siteMainUrl,$(".saveId1").text().trim(),dateHrsInput1,"Yes");
+						resultUpdate1.done(function(){
+								if($(".levelAct1").css("display") != "none" && $(".addSiteClass1").css("display") == "none")
+								{				
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								}
+								});
+					    resultUpdate1.fail(function(arg) {
+							   alert(arg);
+					 });
+					}
+					else if($(".subId1").text().trim() == ""){
+						var flag = false;
+						$(".rowHrs").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+							
+						});
+						
+						if(flag){
+						countAdd = 1;
+						$("#bg_blocking_layer").show();
+						var resultAddList1=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddSiteValue,lkaddCompValue,lkaddActValue,"Yes",dateDateInput1,dateHrsInput1,addWeekNum,yearData);
+						resultAddList1.done(function(){
+								if($(".levelAct1").css("display") != "none" && $(".addSiteClass1").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								
+								
+								});
+					    resultAddList1.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+						}
+								
+					}
+					
+					
+					var dateDateInput2 = "";
+					var dateHrsInput2 = "";
+					var o = 1;
+                    $(".row").each(function() {
+                            dateDateInput2 += $(".date" + o).val() + ";";
+                            dateHrsInput2 += $(".addSite1Hrs" + o).val() + ";";
+							o++;
+                    });
+					
+					if($(".saveId2").text().trim() != "" ){
+					countAdd = 1;
+					var resultUpdate2=updateListItem(siteMainUrl,$(".saveId2").text().trim(),dateHrsInput2,"Yes");
+						resultUpdate2.done(function(){
+								if($(".addSiteClass1").css("display") != "none" && $(".addSiteClass2").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultUpdate2.fail(function(arg) {
+							   alert(arg);
+								});
+					}else if($(".subId2").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs1").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});
+						if(flag){
+						countAdd = 1;
+						var resultAddList2=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue1,lkaddCompValue,lkaddNewActValue1,"Yes",dateDateInput2,dateHrsInput2,addWeekNum,yearData);
+							
+						resultAddList2.done(function(){
+								if($(".addSiteClass1").css("display") != "none" && $(".addSiteClass2").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultAddList2.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+								
+					}
+					
+					}
+					
+					var dateDateInput3 = "";
+					var dateHrsInput3 = "";
+					var p = 1;
+                    $(".row").each(function() {
+                            dateDateInput3 += $(".date" + p).val() + ";";
+                            dateHrsInput3 += $(".addSite2Hrs" + p).val() + ";";
+							p++;
+                    });
+					
+					if($(".saveId3").text().trim() != "" ){
+					countAdd = 1;
+					var resultUpdate3=updateListItem(siteMainUrl,$(".saveId3").text().trim(),dateHrsInput3,"Yes");
+						resultUpdate3.done(function(){
+								if($(".addSiteClass2").css("display") != "none" && $(".addSiteClass3").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultUpdate3.fail(function(arg) {
+							   alert(arg);
+								});
+								
+								
+								
+					}else if($(".subId3").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs2").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});	
+						if(flag){
+						countAdd = 1;
+						var resultAddList3=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue2,lkaddCompValue,lkaddNewActValue2,"Yes",dateDateInput3,dateHrsInput3,addWeekNum,yearData);
+						resultAddList3.done(function(){
+								if($(".addSiteClass2").css("display") != "none" && $(".addSiteClass3").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultAddList3.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+							
+					}
+					}
+					
+					
+					var dateDateInput4 = "";
+					var dateHrsInput4 = "";
+					var q = 1;
+                    $(".row").each(function() {
+                            dateDateInput4 += $(".date" + q).val() + ";";
+                            dateHrsInput4 += $(".addSite3Hrs" + q).val() + ";";
+							q++;
+                    });
+					
+					if($(".saveId4").text().trim() != "" ){
+					countAdd = 1;
+					var resultUpdate4=updateListItem(siteMainUrl,$(".saveId4").text().trim(),dateHrsInput4,"Yes");
+						resultUpdate4.done(function(){
+								if($(".addSiteClass3").css("display") != "none" )
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultUpdate4.fail(function(arg) {
+							   alert(arg);
+								});
+	
+					}else if($(".subId4").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs3").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});	
+						if(flag){
+						countAdd = 1;
+						var resultAddList4=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue3,lkaddCompValue,lkaddNewActValue3,"Yes",dateDateInput4,dateHrsInput4,addWeekNum,yearData);
+
+						resultAddList4.done(function(){
+								if($(".addSiteClass3").css("display") != "none" )
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultAddList4.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+							
+							}
+					}
+					
+				
+					//if(countAdd == 1){
+					
+					
+					//}
+					if(countAdd != 1){
+					alert("Please provide the Hours");
+					}
+
+                   }
+				   else{
+				   alert("Please delete the rows or provide the Hours");
+				   }
+					
+					
+					
+                }
+				else{
+				alert("Duplicate value for site and activity is not allowed");
+				}
+				
+				}
+				else{
+				alert("Select Name, Company, Site, Activity before you save or submit");
+				}
+
+                });
+				
+				$(".saveBtn").click(function() {
+				
+				var yearInfo=$('.date1').val();
+				yearData=yearInfo.split('/')[2];
+				var drpFlag = true;
+				$(".dropdown").each(function(){
+				if($(this).val() == "AddActivity" || $(this).val() == "AddSite" || $(this).val() == "AddName" || $(this).val() == "AddCompany"|| $(this).val() == "AddOtherSite1"|| $(this).val() == "AddOtherSite2"|| $(this).val() == "AddOtherSite3"|| $(this).val() == "AddOtherAct1"|| $(this).val() == "AddOtherAct2"|| $(this).val() == "AddOtherAct3"){
+				drpFlag = false;
+				}
+				});
+				if(drpFlag){
+				var siteActVal1 = ($("#site").val() + $("#act").val());
+				var siteActVal2 = ($("#site1").val() + $("#act1").val());
+				var siteActVal3 = ($("#site2").val() + $("#act2").val());
+				var siteActVal4 = ($("#site3").val() + $("#act3").val());
+				var disSite2 = $(".addSiteClass1").css("display");
+				var disSite3 = $(".addSiteClass2").css("display");
+				var disSite4 = $(".addSiteClass3").css("display");
+				
+				if((siteActVal1 != siteActVal2 || disSite2 == "none") && (siteActVal1 != siteActVal3 || disSite3 == "none") && (siteActVal1 != siteActVal4 || disSite4 == "none") && (siteActVal2 != siteActVal3 || disSite3 == "none") && (siteActVal2 != siteActVal4|| disSite4 == "none") && (siteActVal3 != siteActVal4 || disSite4 == "none"))
+				{
+				var emptyRowHours = true;
+
+					if($(".addSiteClass1").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs1").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+
+					if($(".addSiteClass2").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs2").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+
+					if($(".addSiteClass3").css("display") != "none")
+					{
+					var siteOneFlag = true;
+					$(".addHrs3").each(function()
+					{
+					if($(this).val().trim() != "")
+					{
+					siteOneFlag = false;
+					}
+					});
+					if(siteOneFlag)
+					{
+					emptyRowHours = false;
+					}
+					}
+					
+					if(emptyRowHours)
+					{
+                    var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+
+
+
+
+                    var addFieldValue = $("#names").val();
+                    var lkaddFieldValue = new SP.FieldLookupValue();
+                    lkaddFieldValue.set_lookupId(addFieldValue);
+
+                    var addSiteValue = $("#site").val();
+                    var lkaddSiteValue = new SP.FieldLookupValue();
+                    lkaddSiteValue.set_lookupId(addSiteValue);
+
+
+                    var addCompValue = $("#comp").val();
+                    var lkaddCompValue = new SP.FieldLookupValue();
+                    lkaddCompValue.set_lookupId(addCompValue);
+
+                    var addActValue = $("#act").val();
+                    var lkaddActValue = new SP.FieldLookupValue();
+					lkaddActValue.set_lookupId(addActValue);
+					
+					
+					var addNewSiteValue1 = $("#site1").val();
+					var lkaddNewSiteValue1 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue1.set_lookupId(addNewSiteValue1);
+
+					var addNewActValue1 = $("#act1").val();
+					var lkaddNewActValue1 = new SP.FieldLookupValue();
+                    lkaddNewActValue1.set_lookupId(addNewActValue1);
+					
+					var addNewSiteValue2 = $("#site2").val();
+					var lkaddNewSiteValue2 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue2.set_lookupId(addNewSiteValue2);
+
+					var addNewActValue2 = $("#act2").val();
+					var lkaddNewActValue2 = new SP.FieldLookupValue();
+                    lkaddNewActValue2.set_lookupId(addNewActValue2);
+					
+					var addNewSiteValue3 = $("#site3").val();
+					var lkaddNewSiteValue3 = new SP.FieldLookupValue();
+                    lkaddNewSiteValue3.set_lookupId(addNewSiteValue3);
+
+					var addNewActValue3 = $("#act3").val();
+					var lkaddNewActValue3 = new SP.FieldLookupValue();
+                    lkaddNewActValue3.set_lookupId(addNewActValue3);
+
+					var addWeekNum=$(".weekNum").text();
+					var addStatusData=$(".statusClass").text();
+					var saveName = $("#names").find("option:selected").text();
+					var saveSite = $("#site").find("option:selected").text();
+					var saveComp = $("#comp").find("option:selected").text();
+					var saveAct = $("#act").find("option:selected").text();
+					
+					var saveSite1 = $("#site1").find("option:selected").text();
+					var saveAct1 = $("#act1").find("option:selected").text();
+					
+					var saveSite2 = $("#site2").find("option:selected").text();
+					var saveAct2 = $("#act2").find("option:selected").text();
+					
+					var saveSite3 = $("#site3").find("option:selected").text();
+					var saveAct3 = $("#act3").find("option:selected").text();
+					
+					
+					var dateDateInput1 = "";
+					var dateHrsInput1 = "";
+					var n = 1;
+                    $(".row").each(function() {
+                            dateDateInput1 += $(".date" + n).val() + ";";
+                            dateHrsInput1 += $(".Hrs" + n).val() + ";";
+							n++;
+                    });
+					var countAdd = 0;
+					if($(".saveId1").text().trim() != ""){
+								countAdd = 1;
+								$("#bg_blocking_layer").show();
+							var resultSavUpdate1=updateListItem(siteMainUrl,$(".saveId1").text().trim(),dateHrsInput1,"No");
+								resultSavUpdate1.done(function(){
+								if($(".levelAct1").css("display") != "none" && $(".addSiteClass1").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+								resultSavUpdate1.fail(function(arg) {
+							   alert(arg);
+							});
+								
+								
+					}else if($(".subId1").text().trim() == ""){
+						
+						var flag = false;
+						$(".rowHrs").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});
+						if(flag){
+						countAdd = 1;
+						$("#bg_blocking_layer").show();
+						var resultSavAddList1=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddSiteValue,lkaddCompValue,lkaddActValue,"No",dateDateInput1,dateHrsInput1,addWeekNum,yearData);
+						resultSavAddList1.done(function(){
+								if($(".levelAct1").css("display") != "none" && $(".addSiteClass1").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultSavAddList1.fail(function(arg) {
+							   alert(arg);
+					 });
+
+							}
+					}
+					
+					
+					
+					var dateDateInput2 = "";
+					var dateHrsInput2 = "";
+					var o = 1;
+                    $(".row").each(function() {
+                            dateDateInput2 += $(".date" + o).val() + ";";
+                            dateHrsInput2 += $(".addSite1Hrs" + o).val() + ";";
+							o++;
+                    });
+					
+					if($(".saveId2").text().trim() != "" ){
+					countAdd = 1;
+								var resultSavUpdate2=updateListItem(siteMainUrl,$(".saveId2").text().trim(),dateHrsInput2,"No");
+								resultSavUpdate2.done(function(){
+								if($(".addSiteClass1").css("display") != "none" && $(".addSiteClass2").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+								resultSavUpdate2.fail(function(arg) {
+							   alert(arg);
+								});
+								
+								
+					}else if($(".subId2").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs1").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});	
+						if(flag){
+						countAdd = 1;
+						var resultSavAddList2=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue1,lkaddCompValue,lkaddNewActValue1,"No",dateDateInput2,dateHrsInput2,addWeekNum,yearData);
+						resultSavAddList2.done(function(){
+								if($(".addSiteClass1").css("display") != "none" && $(".addSiteClass2").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultSavAddList2.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+							
+							}
+					}
+					
+					
+					var dateDateInput3 = "";
+					var dateHrsInput3 = "";
+					var p = 1;
+                    $(".row").each(function() {
+                            dateDateInput3 += $(".date" + p).val() + ";";
+                            dateHrsInput3 += $(".addSite2Hrs" + p).val() + ";";
+							p++;
+                    });
+					
+					if($(".saveId3").text().trim() != "" ){
+					countAdd = 1;
+								var resultSavUpdate3=updateListItem(siteMainUrl,$(".saveId3").text().trim(),dateHrsInput3,"No");
+								resultSavUpdate3.done(function(){
+								if($(".addSiteClass2").css("display") != "none" && $(".addSiteClass3").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+								resultSavUpdate3.fail(function(arg) {
+							   alert(arg);
+								});
+								
+								
+					}else if($(".subId3").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs2").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});	
+						if(flag){
+						countAdd = 1;
+						var resultSavAddList3=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue2,lkaddCompValue,lkaddNewActValue2,"No",dateDateInput3,dateHrsInput3,addWeekNum,yearData);
+						resultSavAddList3.done(function(){
+								if($(".addSiteClass2").css("display") != "none" && $(".addSiteClass3").css("display") == "none")
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultSavAddList3.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+							}
+					}
+					
+					
+					var dateDateInput4 = "";
+					var dateHrsInput4 = "";
+					var q = 1;
+                    $(".row").each(function() {
+                            dateDateInput4 += $(".date" + q).val() + ";";
+                            dateHrsInput4 += $(".addSite3Hrs" + q).val() + ";";
+							q++;
+                    });
+					
+					if($(".saveId4").text().trim() != ""){
+					countAdd = 1;
+								var resultSavUpdate4=updateListItem(siteMainUrl,$(".saveId4").text().trim(),dateHrsInput4,"No");
+								resultSavUpdate4.done(function(){
+								if($(".addSiteClass3").css("display") != "none" )
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+								resultSavUpdate4.fail(function(arg) {
+							   alert(arg);
+								});
+								
+					}else if($(".subId4").text().trim() == ""){
+						
+						var flag = false;
+						$(".addHrs3").each(function(){
+							if($(this).val().trim() != "")
+							{
+							flag = true;
+							}
+							
+						});	
+						if(flag){
+						countAdd = 1;
+						var resultSavAddList4=addListItem(siteMainUrl,"Data_Timesheet",lkaddFieldValue,lkaddNewSiteValue3,lkaddCompValue,lkaddNewActValue3,"No",dateDateInput4,dateHrsInput4,addWeekNum,yearData);
+						resultSavAddList4.done(function(){
+								if($(".addSiteClass3").css("display") != "none" )
+								{
+								setTimeout(function(){onChangeDate("No");}, 2000);
+								
+								}
+								});
+					    resultSavAddList4.fail(function(arg) {
+							   alert(arg);
+					 });
+							
+							
+							
+							}
+					}					
+					
+					
+					//onChangeDate("No");
+					//if(countAdd == 1){
+                    
+
+					//}
+					if(countAdd != 1){
+					alert("Please provide the Hours");
+					}
+					}
+					else{
+				   alert("Please delete the rows or provide the Hours");
+				   }
+					
+				}
+				else{
+				alert("Duplicate value for site and activity is not allowed");
+				}
+				
+				}
+				else{
+				alert("Select Name, Company, Site, Activity before you save or submit");
+				}
+
+                });
+                
+				
+				$("#comp").change(function(){
+					
+				onChangeDate("No");
+
+				});
+				$("#names").change(function(){
+					
+				onChangeDate("No");
+					
+				});	
+
+
+
+                
+                loadaddsitelist1();
+                loadaddsitelist2();
+                loadaddsitelist3();
+                loadaddactlist1();
+                loadaddactlist2();
+                loadaddactlist3();
+				updateDateText('start');
+				
+				onChangeDate("Yes");
+				});
+				
+				
+				
+            });
+			
+			function updateDateText(inst) {
+			var date = new Date();
+			//var tempDate=
+					 startDate = new Date(date.setDate(date.getDate() - date.getDay()+1));
+						endDate = new Date(date.setDate(date.getDate() - date.getDay()+7));	
+                       // startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay()+1);
+                       // endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
+                        var dateFormat =  startDate.getDate()  + "/" + (startDate.getMonth()+1 )+ "/" + startDate.getFullYear();
+                        //$('#startDate').text($.datepicker.formatDate(dateFormat, startDate, inst.settings));
+                        //$('#endDate').text($.datepicker.formatDate(dateFormat, endDate, inst.settings));
+                        $(".date-picker").val($.datepicker.formatDate(dateFormat, startDate, inst.settings) + " - " + $.datepicker.formatDate(dateFormat, endDate, inst.settings));
+                        var i = 1;
+						
+                        $(".row").each(function() {
+							startDate = new Date(startDate.setDate(startDate.getDate() - startDate.getDay()+i));	
+                            $(this).val(startDate.format("dd/MM/yyyy"));
+                            i++;
+                        });
+		var curr = new Date;
+		var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()+1));
+		var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+7));	
+		$(".fromDate").text(firstday.format("dd/MM/yyyy")+'-'+lastday.format("dd/MM/yyyy"))	
+		
+      //  $(".fromDate").text($.datepicker.formatDate(dateFormat, startDate, inst.settings) + " - " + $.datepicker.formatDate(dateFormat, endDate, inst.settings));
+	  
+	  
+    }
+			
+			
+			function updateListItem(siteMainUrl, itemId, hrs, status) {
+				 dfcUpdateItem = $.Deferred();
+			    var clientContext = new SP.ClientContext(siteMainUrl);
+			    var oList = clientContext.get_web().get_lists().getByTitle('Data_Timesheet');
+				var splitTmHrs = hrs.split(";");
+			    oListItem = oList.getItemById(itemId);
+
+			    oListItem.set_item('TmHours1', splitTmHrs[0]);
+				oListItem.set_item('TmHours2', splitTmHrs[1]);
+				oListItem.set_item('TmHours3', splitTmHrs[2]);
+				oListItem.set_item('TmHours4', splitTmHrs[3]);
+				oListItem.set_item('TmHours5', splitTmHrs[4]);
+				oListItem.set_item('TmHours6', splitTmHrs[5]);
+				oListItem.set_item('TmHours7', splitTmHrs[6]);
+				oListItem.set_item('Status', status);
+				if(status=="No")
+				 {
+				 oListItem.set_item("StatusofTimesheet", "Saved");
+				 }
+                 if(status=="Yes")
+				 {
+				 oListItem.set_item("StatusofTimesheet", "Submitted");
+				 }
+			    oListItem.update();
+				clientContext.load(oListItem);
+			    clientContext.executeQueryAsync(Function.createDelegate(this, this.onQueryUpdateSucceeded), Function.createDelegate(this, this.onQueryUpdateFailed));
+				return dfcUpdateItem.promise();
+			}
+
+			function onQueryUpdateSucceeded() {
+			    //alert('Item updated!');
+				dfcUpdateItem.resolve();
+			}
+
+			function onQueryUpdateFailed(sender, args) {
+
+			    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+				dfcUpdateItem.reject();
+			}
+
+            function addListItem(siteUrl, lstName, addNameVal, addSiteVal, addCompName, addactName, addstatus, TmDate, TmHrs,addWeek,yearData) {
+                dfcAddItem = $.Deferred();
+				
+                var clientContext = new SP.ClientContext(siteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle(lstName);
+				var splitTmDate = TmDate.split(";");
+				var splitTmHours = TmHrs.split(";");
+                var itemCreateInfo = new SP.ListItemCreationInformation();
+                oListItem = oList.addItem(itemCreateInfo);
+				oListItem.set_item("UserName", addNameVal);
+                oListItem.set_item("Activity", addactName);
+                oListItem.set_item("Site_Name", addSiteVal);
+                oListItem.set_item("Company", addCompName);
+                oListItem.set_item("TmDate1", splitTmDate[0]);
+				oListItem.set_item("TmDate2", splitTmDate[1]);
+				oListItem.set_item("TmDate3", splitTmDate[2]);
+				oListItem.set_item("TmDate4", splitTmDate[3]);
+				oListItem.set_item("TmDate5", splitTmDate[4]);
+				oListItem.set_item("TmDate6", splitTmDate[5]);
+				oListItem.set_item("TmDate7", splitTmDate[6]);
+				oListItem.set_item("TmHours1", splitTmHours[0]);
+				oListItem.set_item("TmHours2", splitTmHours[1]);
+				oListItem.set_item("TmHours3", splitTmHours[2]);
+				oListItem.set_item("TmHours4", splitTmHours[3]);
+				oListItem.set_item("TmHours5", splitTmHours[4]);
+				oListItem.set_item("TmHours6", splitTmHours[5]);
+				oListItem.set_item("TmHours7", splitTmHours[6]);
+				 oListItem.set_item("Week", addWeek);
+				oListItem.set_item("Status", addstatus);
+				 
+				oListItem.set_item("Year",yearData);
+                 if(addstatus=="No")
+				 {
+				 oListItem.set_item("StatusofTimesheet", "Saved");
+				 }
+                 if(addstatus=="Yes")
+				 {
+				 oListItem.set_item("StatusofTimesheet", "Submitted");
+				 }
+                 
+                oListItem.update();
+
+                clientContext.load(oListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onQueryFailed));
+                return dfcAddItem.promise();
+            }
+
+            function onQuerySucceeded() {
+
+                //alert('Item created:');
+                dfcAddItem.resolve();
+            }
+
+            function onQueryFailed(sender, args) {
+
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcAddItem.reject();
+            }
+			
+			
+			/*
+            function getSavedData(SiteUrl, UsrName, CompanyName, SiteName, ActivityName, Status, dateField, ActLvl) {
+                dfcSaveItem = $.Deferred();
+
+                alert(ActLvl);
+                var clientContext = new SP.ClientContext(SiteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle('Data_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query> <Where> <And> <Eq> <FieldRef Name='UserName' /> <Value Type='Lookup'>"+UsrName+"</Value> </Eq> <And> <Eq> <FieldRef Name='Site_Name' /> <Value Type='Lookup'>"+SiteName+"</Value> </Eq> <And> <Eq> <FieldRef Name='Company' /> <Value Type='Lookup'>"+CompanyName+"</Value> </Eq> <And> <Eq> <FieldRef Name='Activity' /> <Value Type='Lookup'>"+ActivityName+"</Value> </Eq> <And> <Eq> <FieldRef Name='TmDate1' /> <Value Type='Text'>"+dateField+"</Value> </Eq> <Eq> <FieldRef Name='Status' /> <Value Type='Choice'>"+Status+"</Value> </Eq> </And> </And> </And> </And> </And> </Where> </Query></View>");
+                collSaveListItem = oList.getItems(camlQuery);
+
+                clientContext.load(collSaveListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onQueryFailed));
+
+
+
+
+                return dfcSaveItem.promise();
+            }
+
+            function onQuerySucceeded(sender, args) {
+
+                var listItemInfo = '';
+                var listItemEnumerator = collSaveListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+                    listItemInfo += oListItem.get_id();
+					break;
+                }
+
+                //alert(listItemInfo);
+                dfcSaveItem.resolve(listItemInfo);
+            }
+
+            function onQueryFailed(sender, args) {
+
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcSaveItem.reject();
+            }*/
+			
+			
+			function getDeleteData(SiteUrl, saveId) {
+                dfcDeleteItem = $.Deferred();
+				
+                this.clientContext = new SP.ClientContext(SiteUrl);
+                this.oList = clientContext.get_web().get_lists().getByTitle('Data_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query><Where><And><Eq><FieldRef Name='ID' /><Value Type='Counter'>"+saveId+"</Value></Eq><Eq><FieldRef Name='Status' /><Value Type='Choice'>No</Value></Eq></And></Where></Query></View>");
+                collDelListItem = oList.getItems(camlQuery);
+				clientContext.load(collDelListItem);
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQueryDeleteSucceeded), Function.createDelegate(this, this.onQueryDeleteFailed));
+                return dfcDeleteItem.promise();
+            }
+
+            function onQueryDeleteSucceeded(sender, args) {
+				
+                var listItemEnumerator = collDelListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+                    oListItem.deleteObject();
+					break;
+                }
+				oList.update();
+				clientContext.load(oList);
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQueryFinalDeleteSucceeded), Function.createDelegate(this, this.onQueryDeleteFailed));
+                
+            }
+
+            function onQueryDeleteFailed(sender, args) {
+
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcDeleteItem.reject();
+            }
+			function onQueryFinalDeleteSucceeded(sender, args) {
+                dfcDeleteItem.resolve();
+            }
+			
+			
+	
+			
+			function getSavedSubmitData(SiteUrl, UsrName, CompanyName, TmDt) {
+                dfcRetriveItem = $.Deferred();
+				
+                var clientContext = new SP.ClientContext(SiteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle('Data_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query><Where><And><Eq><FieldRef Name='UserName' /><Value Type='Lookup'>"+UsrName+"</Value></Eq><And><Eq><FieldRef Name='Company' /><Value Type='Lookup'>"+CompanyName+"</Value></Eq><Eq><FieldRef Name='TmDate1' /><Value Type='Text'>"+TmDt+"</Value></Eq></And></And></Where></Query></View>");
+                collListItem = oList.getItems(camlQuery);
+
+                clientContext.load(collListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQueryRetrieveSucceeded), Function.createDelegate(this, this.onQueryRetrieveFailed));
+
+
+
+
+                return dfcRetriveItem.promise();
+            }
+
+            function onQueryRetrieveSucceeded(sender, args) {
+
+                var listSaSuInfo = '';
+                var listItemEnumerator = collListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+                    listSaSuInfo += oListItem.get_item('Site_Name').get_lookupId() +";"+ oListItem.get_item('Activity').get_lookupId() +";"+ oListItem.get_item('TmHours1') +";"+ oListItem.get_item('TmHours2') +";"+oListItem.get_item('TmHours3') +";"+oListItem.get_item('TmHours4') +";"+oListItem.get_item('TmHours5') +";"+oListItem.get_item('TmHours6') +";"+oListItem.get_item('TmHours7') +";"+ oListItem.get_item('Status') +";"+ oListItem.get_id() +"|";   
+                }
+
+                
+                dfcRetriveItem.resolve(listSaSuInfo);
+            }
+
+            function onQueryRetrieveFailed(sender, args) {
+				alert('Please add you name');
+                //alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcRetriveItem.reject();
+            }
+            
+            function loadlist() {
+                dfcloadList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Names_Timesheet')/items?$select=Title,ID,Active&$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess,
+                    error: onerror
+                });
+                return dfcloadList.promise();
+            }
+
+            function onsuccess(lstdata) {
+                $("#names").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem = lstdata.d.results[i];
+
+				if(lstitem.Active=="Yes")
+				{
+                    $("#names").append("<option value=" + lstitem.ID + ">" + lstitem.Title + "</option>");
+               }
+				}
+               
+                dfcloadList.resolve();
+            }
+
+            function onerror(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadList.reject();
+            }
+            
+            function loadsitelist() {
+                dfcloadSiteList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Site_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess1,
+                    error: onerror1
+                });
+                return dfcloadSiteList.promise();
+            }
+
+            function onsuccess1(lstdata) {
+                $("#site").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem1 = lstdata.d.results[i];
+
+                    
+                    $("#site").append("<option value=" + lstitem1.ID + ">" + lstitem1.Title + "</option>");
+                }
+               
+                dfcloadSiteList.resolve();
+            }
+
+            function onerror1(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadSiteList.reject();
+            }
+            
+            function loadcomplist() {
+                dfcloadCompList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Company_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess2,
+                    error: onerror2
+                });
+                return dfcloadCompList.promise();
+            }
+
+            function onsuccess2(lstdata) {
+                $("#comp").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem2 = lstdata.d.results[i];
+
+                    
+                    $("#comp").append("<option value=" + lstitem2.ID + ">" + lstitem2.Title + "</option>");
+                }
+                
+                dfcloadCompList.resolve();
+
+            }
+
+            function onerror2(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadCompList.reject();
+            }
+			
+			
+			function getCompanyByName(SiteUrl,UsrName) {
+                dfcCompanyItem = $.Deferred();
+				
+                var clientContext = new SP.ClientContext(SiteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle('Names_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='Title' /><Value Type='Text'>"+UsrName+"</Value></Eq></Where></Query></View>");
+                collListItem = oList.getItems(camlQuery);
+
+                clientContext.load(collListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerycmySucceeded), Function.createDelegate(this, this.onQuerycmyFailed));
+                return dfcCompanyItem.promise();
+            }
+
+            function onQuerycmySucceeded(sender, args) {
+
+                var listCmyInfo = '';
+                var listItemEnumerator = collListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+                    listCmyInfo = oListItem.get_item('Company').get_lookupValue();
+					break;
+                }
+
+                
+                dfcCompanyItem.resolve(listCmyInfo);
+            }
+
+            function onQuerycmyFailed(sender, args) {
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcCompanyItem.reject();
+            }
+			
+			function onChangeDate(initialLoad){			
+					var saveName = "";
+					var saveSite = "";
+					var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+					if(initialLoad == "Yes"){
+					saveName = _spPageContextInfo.userDisplayName;
+					saveName = saveName.replace(",", "");
+					var companyResult = getCompanyByName(siteMainUrl,saveName);
+					companyResult.done(function(companyName){
+					duringPageLoad(siteMainUrl,saveName,companyName);
+					});
+					companyResult.fail(function(arg) {
+						alert(arg);
+					});
+					}else{
+					saveName = $("#names").find("option:selected").text();
+					saveSite = $("#comp").find("option:selected").text();
+					duringPageLoad(siteMainUrl, saveName, saveSite);
+					}
+			}
+            
+			function duringPageLoad(siteMainUrl, saveName, saveSite){
+					var DateVal = $(".date1").val();
+
+					$(".statusClass").text("");
+					$(".saveId1").text("");
+					$(".saveId2").text("");
+					$(".saveId3").text("");
+					$(".saveId4").text("");
+					$(".addSiteClass1").hide();
+					$(".addSiteClass2").hide();
+					$(".addSiteClass3").hide();
+					$(".addBtn").show();
+					$(".delBtn").show();
+					
+					$(".subId1").parent().parent().find("select").removeAttr("disabled");
+					$(".subId1").parent().parent().find("input").removeAttr("disabled");
+					$(".subId1").text("");
+					
+					$(".subId2").parent().parent().find("select").removeAttr("disabled");
+					$(".subId2").parent().parent().find("input").removeAttr("disabled");
+					$(".subId2").text("");
+
+					$(".subId3").parent().parent().find("select").removeAttr("disabled");
+					$(".subId3").parent().parent().find("input").removeAttr("disabled");
+					$(".subId3").text("");
+					
+					$(".subId4").parent().parent().find("select").removeAttr("disabled");
+					$(".subId4").parent().parent().find("input").removeAttr("disabled");
+					$(".subId4").text("");
+					
+					
+					$(".rowHrs").each(function(){
+					$(this).val("");
+					});
+					
+					$(".addHrs1").each(function(){
+					$(this).val("");
+					});
+					
+					$(".addHrs2").each(function(){
+					$(this).val("");
+					});
+					
+					$(".addHrs3").each(function(){
+					$(this).val("");
+					});
+					SP.SOD.executeFunc('SP.js', 'SP.ClientContext', function()
+					{
+					
+					var resultSvSb = getSavedSubmitData(siteMainUrl, saveName, saveSite, DateVal);
+					resultSvSb.done(function(itemVal) {
+					var splitTopVal = itemVal.split("|");
+
+					for(var i=0;i<splitTopVal.length;i++){
+					if(splitTopVal[i] != "")
+					{
+						var splitVal = splitTopVal[i].split(";");
+						
+						if(i == 0){
+							$("#site").val(splitVal[0]);
+							$("#act").val(splitVal[1]);
+							var j=1;
+							$(".row").each(function(){ 
+							if(splitVal[1+j] != "null"){
+							$(".Hrs"+j).val(splitVal[1+j]);
+							}
+							j++;
+							});
+
+							if(splitVal[9] == "Yes")
+							{
+							$(".subId1").text(splitVal[10]);
+							}
+							if(splitVal[9] == "No")
+							{
+							$(".saveId1").text(splitVal[10]);
+							}
+						}
+						if(i == 1){
+							if(splitVal[9] != ""){
+							$(".addSiteClass1").show();
+							}
+							$("#site1").val(splitVal[0]);
+							$("#act1").val(splitVal[1]);
+							var k=1;
+							$(".row").each(function(){ 
+							if(splitVal[1+k] != "null"){
+							$(".addSite1Hrs"+k).val(splitVal[1+k]);
+							}
+							k++;
+							});
+
+							if(splitVal[9] == "Yes")
+							{
+							$(".subId2").text(splitVal[10]);
+							}
+							if(splitVal[9] == "No")
+							{
+							$(".saveId2").text(splitVal[10]);
+							}
+						}
+						if(i == 2){
+							if(splitVal[9] != ""){
+							$(".addSiteClass2").show();
+							}
+							$("#site2").val(splitVal[0]);
+							$("#act2").val(splitVal[1]);
+							var l=1;
+							$(".row").each(function(){ 
+							if(splitVal[1+l] != "null"){
+							$(".addSite2Hrs"+l).val(splitVal[1+l]);
+							}
+							l++;
+							});
+
+							if(splitVal[9] == "Yes")
+							{
+							$(".subId3").text(splitVal[10]);
+							}
+							if(splitVal[9] == "No")
+							{
+							$(".saveId3").text(splitVal[10]);
+							}
+						}
+						if(i == 3){
+							if(splitVal[9] != ""){
+							$(".addSiteClass3").show();
+							}
+							$("#site3").val(splitVal[0]);
+							$("#act3").val(splitVal[1]);
+							var m=1;
+							$(".row").each(function(){ 
+							if(splitVal[1+m] != "null"){
+							$(".addSite3Hrs"+m).val(splitVal[1+m]);
+							}
+							m++;
+							});
+
+							if(splitVal[9] == "Yes")
+							{
+							$(".subId4").text(splitVal[10]);
+							}
+							if(splitVal[9] == "No")
+							{
+							$(".saveId4").text(splitVal[10]);
+							}
+						}
+					}
+					}
+					
+					$("#names option:contains("+saveName+")").attr('selected', true);
+					$("#comp option:contains("+saveSite+")").attr('selected', true);
+					if($(".saveId1").text() != "" && $(".subId1").text() == "")
+					{
+						$(".statusClass").text("Saved");
+					}
+					
+					if($(".saveId1").text() == "" && $(".subId1").text() != "")
+					{
+						$(".statusClass").text("Submitted");
+					}
+					
+					
+					if($(".subId1").text() !=  "")
+					{
+					$(".subId1").parent().parent().find("select").attr("disabled","disabled");
+					$(".subId1").parent().parent().find("input").attr("disabled","disabled");
+					$(".addBtn").hide();
+					$(".delBtn").hide();
+					}
+					
+					if($(".subId2").text() !=  "")
+					{
+					$(".subId2").parent().parent().find("select").attr("disabled","disabled");
+					$(".subId2").parent().parent().find("input").attr("disabled","disabled");
+					}
+					
+					
+					if($(".subId3").text() !=  "")
+					{
+					$(".subId3").parent().parent().find("select").attr("disabled","disabled");
+					$(".subId3").parent().parent().find("input").attr("disabled","disabled");
+					}
+					
+					
+					if($(".subId4").text() !=  "")
+					{
+					$(".subId4").parent().parent().find("select").attr("disabled","disabled");
+					$(".subId4").parent().parent().find("input").attr("disabled","disabled");
+					}
+					//Showing total Hours
+					var totalHrs = 0;
+					$(".rowHrs").each(function(){
+					totalHrs += Number($(this).val());
+					});
+					$(".addHrs1").each(function(){
+					totalHrs += Number($(this).val());
+					});
+					$(".addHrs2").each(function(){
+					totalHrs += Number($(this).val());
+					});
+					$(".addHrs3").each(function(){
+					totalHrs += Number($(this).val());
+					});
+					$(".totalClass").text(totalHrs);
+					
+					$("#bg_blocking_layer").hide();
+					});
+					resultSvSb.fail(function(arg) {
+									alert(arg);
+					});
+				});
+			}
+            function loadactlist() {
+                dfcloadActList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Activity_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_act,
+                    error: onerror_act
+                });
+                return dfcloadActList.promise();
+            }
+
+            function onsuccess_act(lstdata) {
+                $("#act").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem_act = lstdata.d.results[i];
+
+
+                    $("#act").append("<option value=" + lstitem_act.ID + ">" + lstitem_act.Title + "</option>");
+                }
+              
+                dfcloadActList.resolve();
+            }
+
+            function onerror_act(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadActList.reject();
+            }
+            
+            function addFormItem(siteUrlForm, listName, columnName, addTextVal) {
+                dfcAddItem = $.Deferred();
+                var clientContext = new SP.ClientContext(siteUrlForm);
+                var oListForm = clientContext.get_web().get_lists().getByTitle(listName);
+
+                var itemCreateForm = new SP.ListItemCreationInformation();
+                this.oListItem_Form = oListForm.addItem(itemCreateForm);
+
+                oListItem_Form.set_item(columnName, addTextVal);
+
+
+                oListItem_Form.update();
+
+                clientContext.load(oListItem_Form);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceededform), Function.createDelegate(this, this.onQueryFailedform));
+                return dfcAddItem.promise();
+            }
+
+            function onQuerySucceededform() {
+
+                //alert('Item created:');
+                dfcAddItem.resolve();
+            }
+
+            function onQueryFailedform(sender, args) {
+
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcAddItem.reject();
+            }
+            
+            function loadaddsitelist1() {
+                dfcloadSite1List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Site_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccessadd1,
+                    error: onerroradd1
+                });
+                return dfcloadSite1List.promise();
+            }
+
+            function onsuccessadd1(lstdata) {
+                $("#site1").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitemadd1 = lstdata.d.results[i];
+
+                    
+                    $("#site1").append("<option value=" + lstitemadd1.ID + ">" + lstitemadd1.Title + "</option>");
+                }
+                
+                dfcloadSite1List.resolve();
+            }
+
+            function onerroradd1(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadSite1List.reject();
+            }
+
+            
+            function loadaddsitelist2() {
+                dfcloadSite2List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Site_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccessadd2,
+                    error: onerroradd2
+                });
+                return dfcloadSite2List.promise();
+            }
+
+            function onsuccessadd2(lstdata) {
+                $("#site2").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitemadd2 = lstdata.d.results[i];
+
+                    
+                    $("#site2").append("<option value=" + lstitemadd2.ID + ">" + lstitemadd2.Title + "</option>");
+                }
+               
+                dfcloadSite2List.resolve();
+            }
+
+            function onerroradd2(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadSite2List.reject();
+            }
+            
+            function loadaddsitelist3() {
+                dfcloadSite3List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Site_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccessadd3,
+                    error: onerroradd3
+                });
+                return dfcloadSite3List.promise();
+            }
+
+            function onsuccessadd3(lstdata) {
+                $("#site3").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitemadd3 = lstdata.d.results[i];
+
+                   
+                    $("#site3").append("<option value=" + lstitemadd3.ID + ">" + lstitemadd3.Title + "</option>");
+                }
+                
+                dfcloadSite3List.resolve();
+            }
+
+            function onerroradd3(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadSite3List.reject();
+            }
+            
+            function loadaddactlist1() {
+                dfcloadAct1List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Activity_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_addact1,
+                    error: onerror_addact1
+                });
+                return dfcloadAct1List.promise();
+            }
+
+            function onsuccess_addact1(lstdata) {
+                $("#act1").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem_addact1 = lstdata.d.results[i];
+
+
+                    $("#act1").append("<option value=" + lstitem_addact1.ID + ">" + lstitem_addact1.Title + "</option>");
+                }
+               
+                dfcloadAct1List.resolve();
+            }
+
+            function onerror_addact1(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadAct1List.reject();
+            }
+
+            function loadaddactlist2() {
+                dfcloadAct2List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Activity_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_addact2,
+                    error: onerror_addact2
+                });
+                return dfcloadAct2List.promise();
+            }
+
+            function onsuccess_addact2(lstdata) {
+                $("#act2").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem_addact2 = lstdata.d.results[i];
+
+
+                    $("#act2").append("<option value=" + lstitem_addact2.ID + ">" + lstitem_addact2.Title + "</option>");
+                }
+               
+                dfcloadAct2List.resolve();
+            }
+
+            function onerror_addact2(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadAct2List.reject();
+            }
+
+            function loadaddactlist3() {
+                dfcloadAct3List = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Activity_Timesheet')/items?$select=Title,ID &$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_addact3,
+                    error: onerror_addact3
+                });
+                return dfcloadAct3List.promise();
+            }
+
+            function onsuccess_addact3(lstdata) {
+                $("#act3").empty();
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem_addact3 = lstdata.d.results[i];
+
+
+                    $("#act3").append("<option value=" + lstitem_addact3.ID + ">" + lstitem_addact3.Title + "</option>");
+                }
+                
+                dfcloadAct3List.resolve();
+            }
+
+            function onerror_addact3(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadAct3List.reject();
+            }
+        </script>
+</head>
+
+<body>
+
+<div id="bg_blocking_layer" style="display:none;">
+    <div id="layout_container">
+      
+	  Loading.....
+	 
+    </div>
+</div>
+<div class="se-pre-con" style="display:none;"></div>
+    <div class="timesheet">
+
+        <div class="logo" style="background-color: #eadf67;">
+            <img src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/bannerlogo.png" alt="Paris" width="190" height="50">
+			
+        </div>
+		<div><img class="imageUserClass" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/unnamed%20(8).png" alt="Smiley face" width="42" height="42" style="margin-left:1090px;">
+		<a href="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/TimeSheet(UserManual).docx?d=wc9f33e43468f4f74bf50ad6e90c016dc" style="margin: 8px; color: black; font-size: 18px; font-weight: 600; "  download="">
+                            User Manual
+                        </a>
+						</div>
+        <h2 class="Heading" style="border-bottom:1px solid gray; padding-bottom:10px;"><img class="imageClass" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/tidy-clock-icon.png" alt="Smiley face" width="42" height="42">&nbspTimesheet</h2>
+			
+<div class="mainClass">
+        <div class="name">
+            <table>
+                <tr>
+                    <td><div class="label" style="font-size: 18px; float: left;">Name:</div>
+					</td>
+					<td><div><select id="names" class="dropdown" style="width: 156px; margin-top: -4px; margin-left: 15px;border-radius: 3px;"></select></div></td>
+					
+					
+                    <td><div class="label" style="font-size: 18px;margin-left: 137px; float: left;">Company:</div></td>
+					<td><div><select id="comp" class="dropdown" style="width: 156px; margin-top: -4px; margin-left: 15px;border-radius: 3px;"></select></div></td>
+					
+					
+                    <td><div for="startDate" class="Date_label" style="font-size: 18px;margin-left: 109px;float:left;">Date: </div></td>
+					<td><div><input name="startDate" class="date-picker" style="visibility: hidden;position: absolute;" /></div></td>
+                    
+                </tr>
+				<!-- <tr class="rowAddName" style="display:none;">
+					<td ><div class="secAddName" style="display:none;"><div><input class="txtAddName" type="text" name="addname" placeholder="Add Name" style="width: 123px; margin-top: 18px;margin-left:18px"></div><div class="btnAddName" id="addname" style="margin-top: -22px; margin-left: 175px;">Add</div></div></td>
+					<td > <div class="secAddComp" style="display:none;" ><div ><input class="txtAddComp" type="text" name="addcomp" placeholder="Add Company" style=" width: 143px; margin-top: 16px; margin-left: 164px;"></div><div class="btnAddComp addcompany" style="margin-top: -22px; margin-left: 342px;">Add</div></div></td>
+					<td></td>
+				</tr> -->
+				</table>
+				
+          
+
+
+        </div>
+
+	<h2 class="Heading" style="border-bottom:1px solid #2b85bc; padding-bottom:10px;"></h2>
+	
+	
+           
+     <table>
+	<tr>
+
+	
+	<td><div class="weekClass" style="padding-top: 29px; padding-right: 29px; padding-bottom: 29px;">Week :</div></td>
+	<td><div class="prevClass " style="display:none;" >Prev </div></td>
+	<td><div class="weekNum" style="color: brown; font-size: 15px; margin-left: -19px;font-weight: 600;"></div></td>
+	<td><div class="nextClass" style="display:none;">Next</div></td>
+	</tr>
+	</table>  
+	
+<table>
+        <tr>
+		<td><div class="fromClass" >From : </div></td>
+		<td><div class="fromDate" style="padding: 5px; width: 174px; color: brown; font-size: 15px; font-weight: 600; margin-top: -12px;"></div></td>
+                <td>
+                    <div class="totalHoursLabel" style="padding: 5px; width: 105px; font-weight: bold; margin-top: -12px; margin-left: 637px;">Reported Hours  :</div>
+                </td>
+                <td>
+                    <div class="totalClass" style="	font-weight: bold;font-size: 17px;color: Green;padding: 5px; margin-top: -12px;"></div>
+                </td>
+        </tr>
+</table>
+        </br>	
+		</br>
+	
+<div class="divTableClass">
+        <table id="divNew">
+            <tr>
+                <th class="headerClass" "> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Site </th>
+                <th> &nbsp Activity</th>
+                <th style="text-align: center;">Mon</th>
+                <th style="text-align: center;">Tue</th>
+                <th style="text-align: center;">Wed</th>
+                <th style="text-align: center;">Thu</th>
+                <th style="text-align: center;">Fri</th>
+                <th style="text-align: center;">Sat</th>
+                <th style="text-align: center;">Sun</th>
+				<th style="color:#2b85bc;">Addin</th>
+				
+
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+				
+                <th><input class="row date1" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date2" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date3" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date4" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date5" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date6" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+                <th><input class="row date7" type="text" name="fname" placeholder="Date" disabled style="background-color: #2b85bc;color: white; border-color:#2b85bc"> </th>
+				<th style="color:#2b85bc;">Addin</th>
+			
+			</tr>
+            <tr class="levelAct1" style="text-align: center;">
+                
+                    <td><select id="site" class="dropdown" style="width: 115px;height: 32px;"></select></td>
+					 
+                    <td> <select id="act" class="dropdown" style="width: 115px;height: 32px; margin-left: -28px;"></select></td>
+                    <td><input class="rowHrs Hrs1" type="number"   name="24" placeholder="Hrs" style="width:54px;height: 26px;"><div style="display:none;" class="saveId1"></div><div style="display:none;" class="subId1"></div></td>
+                    <td><input class="rowHrs Hrs2" type="number"  name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                    <td><input class="rowHrs Hrs3" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                    <td> <input class="rowHrs Hrs4" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                    <td> <input class="rowHrs Hrs5" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                    <td> <input class="rowHrs Hrs6" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px; background-color: #b8e896;"></td>
+                    <td> <input class="rowHrs Hrs7" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                    <td>
+                        <div class="addBtn addSiteBtn1">+ </div>
+                    </td>
+                    <td>
+                        
+                        <td>
+
+                
+            </tr>
+			<!-- <tr class="1TdAdd" style="display:none;">
+						<td ><div class="secAddSite" style="display:none;"><div ><input class="txtAddSite" type="text" name="addsite" placeholder="Add site" style="width: 102px;"></div><div class="btnAddSite" style="margin-top: -19px; margin-left: 133px;">Add</div></div></td>
+						<td > <div class="secAddAct" style="display:none;" ><div ><input class="txtAddAct" type="text" name="addact" placeholder="Add activity" style="width: 102px; margin-left: -27px;" ></div><div class="btnAddAct" style="margin-top: -20px; margin-left: 106px;">Add</div></div></td>
+			</tr> -->
+			
+			 
+            <tr class="addSiteClass1" style="display:none ;text-align: center;">
+
+                <td><select id="site1" class="dropdown" style="width: 115px;height: 32px;"></select></td>
+                <td><select id="act1" class="dropdown" style="width: 115px;height: 32px; margin-left: -28px;"></select></td>
+                <td> <input class="addHrs1  addSite1Hrs1" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"><div style="display:none;" class="saveId2"></div><div style="display:none;" class="subId2"></div></td>
+                <td> <input class="addHrs1  addSite1Hrs2" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs1  addSite1Hrs3" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs1  addSite1Hrs4" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs1  addSite1Hrs5" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs1  addSite1Hrs6" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td> <input class="addHrs1  addSite1Hrs7" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td>
+                    <div class="addBtn addSiteBtn2">+ </div>
+                </td>
+                <td>
+                    <div class="delBtn delSiteBtn2">- </div>
+                    <td>
+
+            </tr>
+			<!-- <tr  class="2TdAdd" style="display:none;">
+						<td><div class="secAddSite1" style="display:none;" ><div ><input class="txtAddSite1" type="text" name="addsite" placeholder="Add site" style="width: 102px;"></div><div class="btnAddSite1" style="margin-top: -19px; margin-left: 133px;">Add</div></div></td>
+						<td><div class="secAddAct1" style="display:none;"> <div ><input class="txtAddAct1" type="text" name="addact" placeholder="Add activity" style="width: 102px; margin-left: -27px;" ></div><div class="btnAddAct1" style="margin-top: -20px; margin-left: 106px;">Add</div></div></td>
+			</tr> -->
+			
+			
+            <tr class="addSiteClass2" style="display:none;text-align: center;">
+
+                <td><select id="site2" class="dropdown" style="width: 115px;height: 32px;"></select></td>
+                <td><select id="act2" class="dropdown" style="width: 115px;height: 32px; margin-left: -28px;"></select></td>
+                <td> <input class="addHrs2  addSite2Hrs1" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"><div style="display:none;" class="saveId3"></div><div style="display:none;" class="subId3"></div></td>
+                <td> <input class="addHrs2  addSite2Hrs2" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs2  addSite2Hrs3" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs2  addSite2Hrs4" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs2  addSite2Hrs5" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs2  addSite2Hrs6" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td> <input class="addHrs2  addSite2Hrs7" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td>
+                    <div class="addBtn addSiteBtn3">+ </div>
+                </td>
+                <td>
+                    <div class="delBtn delSiteBtn3">- </div>
+                    <td>
+
+            </tr>
+			<!-- <tr class="3TdAdd" style="display:none;">
+						<td><div class="secAddSite2" style="display:none;"><div ><input class="txtAddSite2" type="text" name="addsite" placeholder="Add site" style="width: 102px;"></div><div class="btnAddSite2" style="margin-top: -19px; margin-left: 133px;">Add</div></div></td>
+						<td><div class="secAddAct2" style="display:none;"><div ><input class="txtAddAct2" type="text" name="addact" placeholder="Add activity" style="width: 102px; margin-left: -27px;" ></div><div class="btnAddAct2" style="margin-top: -20px; margin-left: 106px;">Add</div></div></td>
+                
+			</tr> -->
+			
+            <tr class="addSiteClass3" style="display:none;text-align: center;">
+
+                <td><select id="site3" class="dropdown" style="width: 115px;height: 32px;"></select></td>
+                <td><select id="act3" class="dropdown" style="width: 115px;height: 32px; margin-left: -28px;"></select></td>
+                <td> <input class="addHrs3  addSite3Hrs1" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"><div style="display:none;" class="saveId4"></div><div style="display:none;" class="subId4"></div></td>
+                <td> <input class="addHrs3  addSite3Hrs2" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs3  addSite3Hrs3" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs3  addSite3Hrs4" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs3  addSite3Hrs5" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;"></td>
+                <td> <input class="addHrs3  addSite3Hrs6" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td> <input class="addHrs3  addSite3Hrs7" type="number" name="fname" placeholder="Hrs" style="width:54px;height: 26px;background-color: #b8e896;"></td>
+                <td>
+                    
+                </td>
+                <td>
+                    <div class="delBtn delSiteBtn4">- </div>
+                    <td>
+
+            </tr>
+			<!-- <tr  class="4TdAdd" style="display:none;">
+						<td><div class="secAddSite3" style="display:none;"><div ><input class="txtAddSite3" type="text" name="addsite" placeholder="Add site" style="width: 102px;"></div><div class="btnAddSite3" style="margin-top: -19px; margin-left: 133px;">Add</div></div></td>
+						<td><div class="secAddAct3" style="display:none;"><div ><input class="txtAddAct3" type="text" name="addact" placeholder="Add activity" style="width: 102px; margin-left: -27px;" ></div><div class="btnAddAct3" style="margin-top: -20px; margin-left: 106px;">Add</div></div></td>
+                
+			</tr> -->
+			
+			
+
+        </table>
+      
+
+</div>
+
+</div>
+        <table>
+            <tr>
+                <td>
+                    <div class="statusLabel">Status:</div>
+                </td>
+                <td>
+                  <div class="statusClass" > </div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+			 
+				<td> <div class="saveBtn saveDiv "> <img class="imageSave" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/unnamed%20(4).png" alt="Smiley face" width="33" height="22"><p class="pSave" style="margin-top: -30px; margin-left: 18px;">Save </p></div></td>
+               
+				<td><div class="submitBtn submitDiv"  style="margin-left:58px;"><img class="imageSubmit" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/arrows-3-blue-left.png" alt="Smiley face" width="33" height="22"> <p class="pSubmit" style="color: white; margin-top: -29px;font-size: 19px;font-weight: bold;margin-left-9px;">Submit</p></div></td>
+            
+            </tr>
+        </table>
+
+
+    </div>
+
+<div class=""></div>
+  
+        
+        
+
+</body>
+
+</html>
