@@ -1,0 +1,201 @@
+<script src="https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/charts/highcharts.js"></script>
+<script src="https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/charts/exporting.js"></script>
+<script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery.min.3.2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+SP.SOD.executeFunc('SP.js', 'SP.ClientContext', function()
+{
+
+var splistitems;
+var seriesarray = new Array();
+var monthYear= new Array();
+var currentDate = new Date();
+ExecuteOrDelayUntilScriptLoaded(GetChartData, "sp.js");
+
+function GetChartData() {
+   seriesarray = [];
+   monthYear = [];
+   var currentcontext = new SP.ClientContext.get_current();
+   var splist = currentcontext.get_web().get_lists().getByTitle('Project-Actions & Issue');
+   var splistquery = new SP.CamlQuery();
+   splistquery.set_viewXml("<View><Query><OrderBy><FieldRef Name='Creation' Ascending='True' /></OrderBy></Query></View>");
+   splistitems = splist.getItems(splistquery);
+   currentcontext.load(splistitems);
+   currentcontext.executeQueryAsync(Function.createDelegate(this, GetChartDataSuccess), Function.createDelegate(this, GetChartDataFail));
+}
+
+function GetChartDataSuccess(sender, args) {
+   var newArray = [];
+   var openArray = [];
+   var closeArray = [];
+   var openPastDueDateArray = [];
+   
+   var splistitemcount = splistitems.get_count();
+   if (splistitemcount != 0) {
+      var splistitemenumerator = splistitems.getEnumerator();
+	  var splistitemenumerator1 = splistitems.getEnumerator();
+	  var currentMonthYear="";
+      while (splistitemenumerator.moveNext()) {
+		var currentlistitem = splistitemenumerator.get_current();
+		var itemMonthYear = currentlistitem.get_item("MonthYear");
+		if(currentMonthYear != itemMonthYear){
+		currentMonthYear=itemMonthYear;
+		monthYear.push(itemMonthYear);
+		newArray.push(0);
+		openArray.push(0);
+		closeArray.push(0);
+		openPastDueDateArray.push(0);
+         }
+      }
+	  while (splistitemenumerator1.moveNext()) {
+		var currentlistitem = splistitemenumerator1.get_current();
+		var itemMonthYear = currentlistitem.get_item("MonthYear");
+		var itemStatus = currentlistitem.get_item("Status").get_lookupValue();
+		var itemDueDate = new Date(currentlistitem.get_item("DueDate"));
+		for(var i=0;i<monthYear.length;i++){
+			if(monthYear[i] == itemMonthYear){
+				switch (itemStatus){
+				  case "New":
+				  newArray[i]=newArray[i]+1;
+				  break;
+				  case "Open":
+				  if(currentDate.getTime() > itemDueDate.getTime()){
+					openPastDueDateArray[i]=openPastDueDateArray[i]+1;
+				  }
+				  else{
+					openArray[i]=openArray[i]+1;
+				  }
+				  break;
+				  case "Closed":
+				  closeArray[i]=closeArray[i]+1;
+				  break;
+				  default:
+					break;
+			}
+		}
+      }
+	 }
+			var seriesNewitem = {
+                           name: "New",
+                           data: newArray
+                       };
+					   
+			seriesarray.push(seriesNewitem);
+			
+			var seriesOpenitem = {
+                           name: "Open",
+                           data: openArray
+                       };
+					   
+			seriesarray.push(seriesOpenitem);
+			
+			var seriesOpenPastDueDateitem = {
+                           name: "Open Past Due Date",
+                           data: openPastDueDateArray
+                       };
+					   
+			seriesarray.push(seriesOpenPastDueDateitem);
+			
+			var seriesCloseitem = {
+                           name: "Closed",
+                           data: closeArray
+                       };
+					   
+			seriesarray.push(seriesCloseitem);
+			
+			
+	  //var seriesitem = {
+      //                     name: itemname,
+      //                     data: [ itemapples, itemoranges, itempears, itemgrapes, itembananas ]
+      //                 };
+         //seriesarray.push(seriesitem);
+      DrawChart();
+   }
+}
+function GetChartDataFail(sender, args) {
+   alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+}
+
+function DrawChart() {
+        fruitChart = new Highcharts.Chart({
+		colors: ['#8ed3db','#f9bd09','red','#4baf44'],
+		credits: {
+			enabled: false
+		},
+            chart: {
+                renderTo: 'chart-container',
+                type: 'column'	,
+				width: 1100,
+				height:350
+            },
+            title: {
+                text: 'Project-Actions & Issue'
+            },
+            xAxis: {
+                categories: monthYear
+            },
+            yAxis: {
+                min: 0,
+				allowDecimals: false,
+                title: {
+                    text: 'Project Status'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.x +'</b><br/>'+
+                        this.series.name +': '+ this.y +'<br/>'+
+                        'Total: '+ this.point.stackTotal;
+                }
+            },
+			exporting: {
+            buttons: {
+                contextButton: {
+                    enabled: false
+					}
+				}
+			},
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: 'white',
+                        style: {
+                            textShadow: '0 0 3px black, 0 0 3px black'
+                        },
+						formatter:function() {
+							if(this.y != 0) {
+								return this.y;
+							}
+						}
+                    }
+                }
+            },
+            series: seriesarray
+        });
+    }
+
+});
+});
+</script>
+
+<div id="chart-container">No Data Found.</div>
