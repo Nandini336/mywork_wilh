@@ -1,0 +1,327 @@
+<script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery.min.3.2.1.js"></script>
+
+<script type="text/javascript">
+var fromEmail;
+var toEmail;
+var currentEmail="";
+var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+var querystring = location.search.substring(1, location.search.length);
+var ids = querystring.split("&")[0];
+var id = ids.split("=")[1];
+var currentassigne="";
+
+$( document ).ready(function() {
+currentassigne=$('select[id^="AssigneTo"]').find("option:selected").text();
+_spBodyOnLoadFunctionNames.push("showID");
+ $("input[title='Creation Date Required Field']").attr('disabled','disabled').css("color","black");
+$('[id ^=Creation][id $=DateTimeFieldDateDatePickerImage]').hide();
+
+
+loadasnlist();
+var querystring = location.search.substring(1, location.search.length);
+var ids = querystring.split("&")[0];
+var id = ids.split("=")[1];
+var Td1 = document.createElement("td");
+Td1.className = "ms-formlabel";
+Td1.innerHTML ="<h3 class ='ms-standardheader'>ID</h3>";
+var Td2 = document.createElement("td");
+Td2.className =  "ms-formbody";
+Td2.innerHTML = id;
+var Tr1 = document.createElement("tr");
+Tr1.appendChild(Td1);
+Tr1.appendChild(Td2);
+var Location = GetSelectedElement(document.getElementById("idAttachmentsRow"),"TABLE").getElementsByTagName("TBODY")[0];
+Location.insertBefore(Tr1,Location.firstChild);
+
+
+
+   $('select[id^="AssigneTo"]').change(function(){
+currentEmail='TO';
+var email2 = getEmailByName(siteMainUrl,$('select[id^="AssigneTo"]').find("option:selected").text());
+});
+setTimeout(function(){
+ $('select[id^="AssigneTo"]').trigger('change');
+}, 500);
+
+
+$('select[id^="RaiseBy"]').change(function(){
+currentEmail='FROM';
+var email2 = getEmailByName(siteMainUrl,$('select[id^="RaiseBy"]').find("option:selected").text());
+});
+setTimeout(function(){
+ $('select[id^="RaiseBy"]').trigger('change');
+}, 500);
+
+
+
+});
+
+
+ function PreSaveAction() { 
+
+    var status=$('select[id^="Status"]').find("option:selected").text();
+   var rslvddate=$("input[id^='ResolvedDate']").val();
+   var descrptn=$("div[id^='Description']").next("div").text().trim();
+   var resltion=$("div[id^='Resolution']").next("div").text().trim();
+   var newassignedName=$('select[id^="AssigneTo"]').find("option:selected").text();
+   
+		if(currentassigne!=newassignedName){
+		SP.SOD.executeFunc('sp.js', 'SP.ClientContext', processEmailToNewAssignee);
+		}
+
+   if(status == "Closed")
+{
+
+ if( rslvddate=="" || descrptn =="" || resltion=="" )
+   {        
+   alert("If you want to close the action/issue, Please Enter Resolved date,Resolution and Description ");    
+   return false;
+}
+}
+if(status == "Closed")
+{
+
+ if( rslvddate!="" || descrptn !="" || resltion!="" || $('select[id^="AssigneTo"]').val()!= 0)
+   {        
+ SP.SOD.executeFunc('sp.js', 'SP.ClientContext', processSendEmails);
+   
+}
+}
+
+return true;
+   
+}
+
+
+function processSendEmails() {
+    //var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+	//var toName =$('select[id^="AssigneTo"]').find("option:selected").text();
+	//var email1 = getEmailByName(siteMainUrl,toName);
+	//var fromName=$('select[id^="RaiseBy"]').find("option:selected").text();
+        //var email2 = getEmailByName(siteMainUrl,fromName);
+
+	//var to=$("input[id^='AssignedEmail']").val();
+    //var from = $("input[id^='RaisedEmailid']").val();
+	 var toia="WSS";
+       var txt = "Description: ";
+	   var resolutiontxt="Resolution: ";
+	   var commentstxt="Comments: ";
+	   var categorytxt="Category: ";
+	   var prioritytxt="Priority: ";
+	   var duedatetxt="Due Date: ";
+	   var resolvedtxt="Resolved Date: ";
+	    var url="URL: ";
+     var 
+	 body='Action/Issue #'+ id +' has been closed by  ' +$('select[id^="AssigneTo"]').find("option:selected").text()+' in Project-Action & Issue'+"<br />"+"<br />"
+	+categorytxt.bold()+$('select[id^="Category"]').find("option:selected").text()+"<br />"+"<br />"
+	+txt.bold()+"<br />"+$("div[id^='Description']").next("div").text().trim()+"<br />"+"<br />"
+	+prioritytxt.bold()+$('select[id^="Priority"]').find("option:selected").text()+"<br />"+"<br />"
+	+duedatetxt.bold()+$("input[id^='DueDate']").val()+"<br />"+"<br />"
+	+resolutiontxt.bold()+"<br />"+$("div[id^='Resolution']").next("div").text().trim()+"<br />"+"<br />"
+	+resolvedtxt.bold()+$("input[id^='ResolvedDate']").val()+"<br />"+"<br />"
+	+commentstxt.bold()+"<br />"+$("input[id^='Title']").val()+"<br />"+"<br />"
+	 +url.bold()+'https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/Lists/SA%20Project%20Issue/AllItems.aspx',
+	subject = 'Closed Action/Issue';
+
+    // Call sendEmail function
+    //
+    sendEmail(toia,fromEmail, body, subject);
+}
+
+function processEmailToNewAssignee() {
+    //var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+	//var toName =$('select[id^="AssigneTo"]').find("option:selected").text();
+	//var email1 = getEmailByName(siteMainUrl,toName);
+	//var fromName=$('select[id^="RaiseBy"]').find("option:selected").text();
+        //var email2 = getEmailByName(siteMainUrl,fromName);
+
+	//var to=$("input[id^='AssignedEmail']").val();
+    //var from = $("input[id^='RaisedEmailid']").val();
+       var fromia="New Issue/Action";
+	  var raisedtxt="Raised By: ";
+	  var descriptiontxt="Description: ";
+	  var priority="Priority: ";
+	  var duedate="Due Date: ";
+	  var url="URL: ";
+     var 
+	 body='Action/Issue #'+ id +' has been Assigned to you in Project-Actions & Issue' +"<br />"+"<br />"
+	 +raisedtxt.bold() + $('select[id^="RaiseBy"]').find("option:selected").text()+"<br />"+"<br />"
+	 +descriptiontxt.bold()+"<br />"+$("div[id^='Description']").find("p").text().trim()+"<br />"+"<br />"
+	 +priority.bold()+$('select[id^="Priority"]').find("option:selected").text()+"<br />"+"<br />"
+	 +duedate.bold()+$("input[id^='DueDate']").val()+"<br />"+"<br />"
+	 +url.bold()+'https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/Lists/SA%20Project%20Issue/AllItems.aspx',
+	 subject = 'Re-assign Action/ Issue';
+
+    // Call sendEmail function
+    //
+    sendEmail(fromia, toEmail, body, subject);
+}
+
+function sendEmail(from, to, body, subject) {
+    //Get the relative url of the site
+    var siteurl = _spPageContextInfo.webServerRelativeUrl;
+    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
+    $.ajax({
+        contentType: 'application/json',
+        url: urlTemplate,
+        type: "POST",
+        data: JSON.stringify({
+            'properties': {
+                '__metadata': {
+                    'type': 'SP.Utilities.EmailProperties'
+                },
+                'From': from,
+                'To': {
+                    'results': [to]
+                },
+                'Body': body,
+                'Subject': subject
+            }
+        }),
+        headers: {
+            "Accept": "application/json;odata=verbose",
+            "content-type": "application/json;odata=verbose",
+            "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
+        },
+        success: function(data) {
+           
+        },
+        error: function(err) {
+            alert('Error in sending Email: ' + JSON.stringify(err));
+        }
+    });
+}
+function getEmailByName(SiteUrl,UsrName) {
+                dfcCompanyItem = $.Deferred();
+				
+                var clientContext = new SP.ClientContext(SiteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle('Names_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='Title' /><Value Type='Text'>"+UsrName+"</Value></Eq></Where></Query></View>");
+                collListItem = oList.getItems(camlQuery);
+
+                clientContext.load(collListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerycmySucceeded), Function.createDelegate(this, this.onQuerycmyFailed));
+                return dfcCompanyItem.promise();
+            }
+
+            function onQuerycmySucceeded(sender, args) {
+
+                var listCmyInfo = '';
+                var listItemEnumerator = collListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+			if(currentEmail == 'FROM'){
+                   		fromEmail=oListItem.get_item('Email');
+			}
+			else if(currentEmail == 'TO'){
+				toEmail=oListItem.get_item('Email');
+			}
+					
+					break;
+                }
+
+                
+                dfcCompanyItem.resolve(listCmyInfo);
+            }
+
+            function onQuerycmyFailed(sender, args) {
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcCompanyItem.reject();
+            }
+			
+			function loadlist() {
+                dfcloadList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Names_Timesheet')/items?$select=Title,ID,Active&$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess,
+                    error: onerror
+                });
+                return dfcloadList.promise();
+            }
+
+            function onsuccess(lstdata) {
+                
+				var raisedName=$('select[id^="RaiseBy"]').find("option:selected").text();
+				var raisedVal=$('select[id^="RaiseBy"]').find("option:selected").val();
+				$('select[id^="RaiseBy"]').empty();
+				
+				$('select[id^="RaiseBy"]').append("<option value=" +raisedVal+ ">" + raisedName + "</option>");
+                
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem = lstdata.d.results[i];
+
+				if(lstitem.Active=="Yes")
+					{
+					 if(lstitem.Title!=raisedName)
+					 {
+					
+                    $('select[id^="RaiseBy"]').append("<option value=" + lstitem.ID + ">" + lstitem.Title + "</option>");
+                }
+				
+				}
+				
+				}
+               
+                dfcloadList.resolve();
+            }
+
+            function onerror(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadList.reject();
+            }
+            function loadasnlist() {
+                dfcloadAsnList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Names_Timesheet')/items?$select=Title,ID,Active&$orderby=Title asc";
+                $.ajax({
+                   url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_addact3,
+                    error: onerror_addact3
+                });
+                return dfcloadAsnList.promise();
+            }
+
+            function onsuccess_addact3(lstdata) {
+                var assignedName=$('select[id^="AssigneTo"]').find("option:selected").text();
+				var assignedVal=$('select[id^="AssigneTo"]').find("option:selected").val();
+				$('select[id^="AssigneTo"]').empty();
+				$('select[id^="AssigneTo"]').append("<option value=" +assignedVal+ ">" + assignedName+ "</option>");
+				
+				for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem_asn = lstdata.d.results[i];
+
+				if(lstitem_asn.Active=="Yes")
+					{
+					if(lstitem_asn.Title!=assignedName)
+					{
+                    $('select[id^="AssigneTo"]').append("<option value=" + lstitem_asn.ID + ">" + lstitem_asn.Title + "</option>");
+                }
+				loadlist();
+				}
+				}
+                dfcloadAsnList.resolve();
+            }
+
+            function onerror_addact3(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadAsnList.reject();
+            }
+           
+
+
+</script>

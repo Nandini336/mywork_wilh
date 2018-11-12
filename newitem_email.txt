@@ -1,0 +1,249 @@
+<script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery.min.3.2.1.js"></script>
+
+<script type="text/javascript">
+var fromEmail;
+var toEmail;
+var currentEmail="";
+var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+$( document ).ready(function() {
+ $('select[id^="Status"]').val(1);
+ $('select[id^="Priority"]').val(3);
+loadlist();
+
+var date = new Date();
+  var datinformat = date.getDate()  + "/" + (date.getMonth()+1 )+ "/" + date.getFullYear();
+$("input[title ='Creation Date Required Field']").val(datinformat);
+
+    $("input[title='Creation Date Required Field']").attr('disabled','disabled').css("color","black");
+$('[id ^=Creation][id $=DateTimeFieldDateDatePickerImage]').hide();
+
+
+   $('select[id^="AssigneTo"]').change(function(){
+currentEmail='TO';
+var email2 = getEmailByName(siteMainUrl,$('select[id^="AssigneTo"]').find("option:selected").text());
+});
+
+$('select[id^="RaiseBy"]').change(function(){
+currentEmail='FROM';
+var email2 = getEmailByName(siteMainUrl,$('select[id^="RaiseBy"]').find("option:selected").text());
+});
+
+
+});
+
+
+ function PreSaveAction() { 
+
+
+
+
+    var status=$('select[id^="Status"]').find("option:selected").text();
+   var rslvddate=$("input[id^='ResolvedDate']").val();
+   var descrptn=$("div[id^='Description']").find("p").text().trim();
+   var resltion=$("div[id^='Resolution']").find("p").text().trim();
+   var raiseTo=$('select[id^="RaiseBy"]').find("option:selected").text();
+	if(status == "Open" || status=="New" || status=="Closed")
+	{
+		if(raiseTo=="(None)")
+		{
+		alert("Please select 'Raised By' Name to raise an Action/Issue");
+		}
+	}
+   if(status == "Closed")
+{
+
+ if( rslvddate=="" || descrptn =="" || resltion=="")
+   {        
+   alert("If you want to close the action/issue, Please Enter Resolved date,Resolution and Description ");    
+   return false;
+}
+}
+if($('select[id^="AssigneTo"]').val() != 0){
+SP.SOD.executeFunc('sp.js', 'SP.ClientContext', processSendEmails);
+}
+return true;
+   
+}
+
+
+function processSendEmails() {
+    //var siteMainUrl = _spPageContextInfo.webAbsoluteUrl;
+	//var toName =$('select[id^="AssigneTo"]').find("option:selected").text();
+	//var email1 = getEmailByName(siteMainUrl,toName);
+	//var fromName=$('select[id^="RaiseBy"]').find("option:selected").text();
+        //var email2 = getEmailByName(siteMainUrl,fromName);
+
+	//var to=$("input[id^='AssigneTo']").val();
+    //var from = $("input[id^='RaisedEmailid']").val();
+      var fromia="New Issue/Action";
+	  var raisedtxt="Raised By: ";
+	  var descriptiontxt="Description: ";
+	  var priority="Priority: ";
+	  var duedate="Due Date: ";
+	  var url="URL: ";
+     var 
+	 body='New Action/Issue has been Assigned to you in Project-Actions & Issue' +"<br />"+"<br />"
+	 +raisedtxt.bold() + $('select[id^="RaiseBy"]').find("option:selected").text()+"<br />"+"<br />"
+	 +descriptiontxt.bold()+"<br />"+$("div[id^='Description']").find("p").text().trim()+"<br />"+"<br />"
+	 +priority.bold()+$('select[id^="Priority"]').find("option:selected").text()+"<br />"+"<br />"
+	 +duedate.bold()+$("input[id^='DueDate']").val()+"<br />"+"<br />"
+	 +url.bold()+'https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/Lists/SA%20Project%20Issue/AllItems.aspx',
+	 subject = 'New Action/Issue';
+
+    // Call sendEmail function
+    //
+    sendEmail(fromia, toEmail, body, subject);
+}
+
+
+function sendEmail(from, to, body, subject) {
+    //Get the relative url of the site
+    var siteurl = _spPageContextInfo.webServerRelativeUrl;
+    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
+    $.ajax({
+        contentType: 'application/json',
+        url: urlTemplate,
+        type: "POST",
+        data: JSON.stringify({
+            'properties': {
+                '__metadata': {
+                    'type': 'SP.Utilities.EmailProperties'
+                },
+                'From': from,
+                'To': {
+                    'results': [to]
+                },
+                'Body': body,
+                'Subject': subject
+            }
+        }),
+        headers: {
+            "Accept": "application/json;odata=verbose",
+            "content-type": "application/json;odata=verbose",
+            "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
+        },
+        success: function(data) {
+           
+        },
+        error: function(err) {
+            alert('Error in sending Email: ' + JSON.stringify(err));
+        }
+    });
+}
+function getEmailByName(SiteUrl,UsrName) {
+                dfcCompanyItem = $.Deferred();
+				
+                var clientContext = new SP.ClientContext(SiteUrl);
+                var oList = clientContext.get_web().get_lists().getByTitle('Names_Timesheet');
+                var camlQuery = new SP.CamlQuery();
+                camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='Title' /><Value Type='Text'>"+UsrName+"</Value></Eq></Where></Query></View>");
+                collListItem = oList.getItems(camlQuery);
+
+                clientContext.load(collListItem);
+
+                clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerycmySucceeded), Function.createDelegate(this, this.onQuerycmyFailed));
+                return dfcCompanyItem.promise();
+            }
+
+            function onQuerycmySucceeded(sender, args) {
+
+                var listCmyInfo = '';
+                var listItemEnumerator = collListItem.getEnumerator();
+
+                while (listItemEnumerator.moveNext()) {
+                    var oListItem = listItemEnumerator.get_current();
+			if(currentEmail == 'FROM'){
+                   		fromEmail=oListItem.get_item('Email');
+			}
+			else if(currentEmail == 'TO'){
+				toEmail=oListItem.get_item('Email');
+			}
+					
+					break;
+                }
+
+                
+                dfcCompanyItem.resolve(listCmyInfo);
+            }
+            function onQuerycmyFailed(sender, args) {
+                alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                dfcCompanyItem.reject();
+            }
+
+	function loadlist() {
+                dfcloadList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Names_Timesheet')/items?$select=Title,ID,Active&$orderby=Title asc";
+                $.ajax({
+                    url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess,
+                    error: onerror
+                });
+                return dfcloadList.promise();
+            }
+
+            function onsuccess(lstdata) {
+                $('select[id^="RaiseBy"]').empty();
+                $('select[id^="RaiseBy"]').append("<option value=" +0+ ">" + "(None)" + "</option>");
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem = lstdata.d.results[i];
+
+				if(lstitem.Active=="Yes")
+					{
+                    $('select[id^="RaiseBy"]').append("<option value=" + lstitem.ID + ">" + lstitem.Title + "</option>");
+                }
+				loadasnlist();
+				}
+               
+                dfcloadList.resolve();
+            }
+
+            function onerror(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadList.reject();
+            }
+            function loadasnlist() {
+                dfcloadAsnList = $.Deferred();
+                var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+                var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('Names_Timesheet')/items?$select=Title,ID,Active&$orderby=Title asc";
+                $.ajax({
+                   url: oDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "accept": "application/json;odata=verbose"
+                    },
+                    success: onsuccess_addact3,
+                    error: onerror_addact3
+                });
+                return dfcloadAsnList.promise();
+            }
+
+            function onsuccess_addact3(lstdata) {
+                $('select[id^="AssigneTo"]').empty();
+                $('select[id^="AssigneTo"]').append("<option value=" +0+ ">" + "(None)" + "</option>");
+                for (var i = 0; i < lstdata.d.results.length; i++) {
+                    var lstitem = lstdata.d.results[i];
+
+				if(lstitem.Active=="Yes")
+					{
+                    $('select[id^="AssigneTo"]').append("<option value=" + lstitem.ID + ">" + lstitem.Title + "</option>");
+                }
+				}
+                
+                dfcloadAsnList.resolve();
+            }
+
+            function onerror_addact3(lstdata, errCode, errMessage) {
+                alert("Error: " + errMessage);
+                dfcloadAsnList.reject();
+            }
+           
+            
+            
+</script>
