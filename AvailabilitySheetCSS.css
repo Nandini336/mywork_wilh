@@ -1,0 +1,838 @@
+
+        .selectedClass {
+            width: 19px !important;
+            height: 15px !important;
+        }
+
+        input {
+
+
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .dataClass {
+            width: 310px;
+            height: 650px;
+            border-radius: 3px;
+
+            margin-top: 17px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+
+        }
+
+        .descriptionData {
+            height: 27px;
+            width: 300px;
+        }
+		.descriptionSite {
+            height: 27px;
+            width: 300px;
+        }
+        .alertDescription {
+            background-color: lightgrey;
+			font-weight:600;
+            color: #3b3c3f;
+            padding: 4px 21px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 85px;
+            height: 28px;
+
+            margin-left: 420px;
+            margin-top: -28px;
+
+
+        }
+
+        .alertSiteDescription{
+		background-color:lightgrey;
+		font-weight:600;
+        color: #3b3c3f;
+        padding: 4px 21px;
+        border:2px solid #a09a9a;
+        border-radius:4px;
+        cursor: pointer;
+        width: 85px;
+        height: 28px;
+
+        margin-left: 420px;
+        margin-top: -28px;
+		}
+
+        .AddDescription {
+            background-color: lightgrey;
+
+            color: #3b3c3f;
+            padding: 4px 21px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 79px;
+            height: 28px;
+
+            margin-left: 317px;
+            margin-top: -28px;
+
+
+        }
+		.ms-siteicon-img{
+		width: 180px !important;
+		height: 66px !important;
+		}
+        .SiteDescription:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .SiteDescription {
+            background-color: lightgrey;
+
+            color: #3b3c3f;
+            padding: 4px 21px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 79px;
+            height: 28px;
+
+            margin-left: 317px;
+            margin-top: -28px;
+
+        }
+
+        .Descriptionmodal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .OtherSitemodal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .imageClass {
+            height: 35px !important;
+            width: 30px !important;
+            margin-bottom: 568px;
+        }
+
+        .dropDownClass {
+            border-radius: 3px;
+            width: 164px;
+            height: 28px;
+            color: black;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-left: 7px;
+
+        }
+
+        .nameLabel {
+            color: black;
+            font-size: 22px;
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-left: 10px;
+            float: left;
+        }
+
+        .dateLabel {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 13px;
+            margin-left: 10px;
+            float: left;
+            color: black;
+
+        }
+
+        .dateHolidayLabel {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 13px;
+            margin-left: 10px;
+            float: left;
+            color: black;
+
+        }
+
+        .dateLabelavail {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 13px;
+            margin-left: 10px;
+            float: left;
+            color: black;
+        }
+
+        .dropDownLoc {
+            border-radius: 3px;
+            width: 164px;
+            height: 28px;
+            color: black;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-left: 28px;
+        }
+
+        .selectedAvail {
+            height: 28px;
+            box-shadow: 0px 5px 13px black;
+            border: 1px solid white;
+
+        }
+
+        .dropDownClassday {
+            border-radius: 3px;
+            width: 164px;
+            height: 28px;
+            color: black;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-left: 128px;
+        }
+
+        .ui-datepicker-trigger {
+            padding: 2px 0px 0px 10px;
+            margin-bottom: 1px;
+            width: 21px;
+            height: 22px;
+        }
+
+        .ui-widget-header .ui-icon {
+            background-image: url("/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/ui-icons_555555_256x240.png") !important;
+        }
+
+        .submitDiv {
+            background-color: #2b85bc;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 28px;
+            width: 87px;
+            height: 35px;
+
+        }
+
+        .chosseMY {
+            margin-top: -144px;
+            color: black;
+            font-size: 18px;
+        }
+
+        .choosetextMY {
+            margin-left: 10px;
+            margin-top: -271px;
+        }
+
+        .ui-datepicker-calendar {
+            display: none;
+        }
+
+        .row {
+            width: 28px;
+            margin-left: 18px;
+        }
+
+        .dateLabelNew {
+            color: black;
+            font-size: 19px;
+            font-weight: 600;
+
+            margin-left: 25px;
+        }
+
+        .dateDiv {
+            margin-top: -385px;
+
+        }
+
+        .dateClass {
+            width: 164px;
+            margin-top: 10px;
+            margin-left: 6px;
+        }
+
+        .dateHoliday {
+            width: 164px;
+            margin-top: 10px;
+            margin-left: 6px;
+        }
+
+        .submitP {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: -8px;
+            margin-left: -8px;
+        }
+
+        #check {
+            display: none;
+        }
+
+
+
+        .test {
+            -webkit-transition: height .3s ease;
+            height: 0;
+            overflow: hidden;
+            width: 310px;
+
+            margin-top: 10px;
+        }
+
+        #check:checked+.test {
+            height: 386px;
+        }
+
+        .renderTable {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+
+            margin-left: 26px;
+        }
+
+        .renderTable td,
+        .renderTable th {
+            border: 1px solid #ddd;
+            padding: 4px;
+        }
+
+        .renderTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .renderTable tr:hover {
+            background-color: #ddd;
+        }
+
+        .renderTable th {
+
+            border-top-style: solid;
+            border-top-color: white;
+            border-top-width: 3px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #2b85bc;
+            color: white;
+        }
+
+        .yearDate {
+            width: 100%;
+            background-color: rgb(43, 133, 188);
+            color: white;
+            margin-left: 26px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-left: 26px;
+            border-bottom-color: white;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+        }
+
+        #startDate {
+            margin-top: -756px;
+            
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        .renderPlaceHolder {
+            margin-top: -117px;
+            display: block;
+        }
+
+        .PartiallyAvailable {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/yellowp.png");
+        }
+
+        .India {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/blue_india.png");
+        }
+
+        .Singapore {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/cream_Singapore.png");
+        }
+
+        .Fujairah {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/violet_fujairah.png");
+        }
+
+        .NL {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/Orange_NL.png");
+        }
+
+        .Norway {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/darkBlue_US.png");
+        }
+
+        .Cancel {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-color: #ddd;
+
+        }
+
+        .cancelHoliday {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-color: #ddd;
+
+        }
+
+        .OtherItem {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/reddish_australia.png");
+        }
+
+        .SingaporeHoliday {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/pinky.png");
+        }
+
+        .FujairahHoliday {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/violet.png");
+        }
+
+        .OnLeave {
+            height: 28px;
+            width: 140px;
+            text-shadow: 2px 2px 2px black;
+            padding: 1px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-left: 32px;
+            background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/red-100630172-orig.jpg");
+        }
+
+        .codeDiv {
+            margin-left: 89px;
+        }
+
+        .colorDiv {
+            padding: 18px;
+            color: Black;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+            margin-left: -96px;
+        }
+
+
+        #layout_container {
+            font-size: 36px;
+            margin-top: 301px;
+            margin-left: 610px;
+
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            top: 0px;
+            width: 50%;
+            height: 30%;
+            color: white;
+            padding: 10px;
+            z-index: 9999;
+        }
+
+        #bg_blocking_layer {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+        .logoImage {
+            width: 190px !important;
+            height: 50px !important;
+        }
+
+        .imageUserClass {
+            width: 33px !important;
+            height: 29px !important;
+        }
+
+        .renderColorTable {
+            border-collapse: separate !important;
+            border-spacing: 6px 8px;
+            margin-top: -9px;
+            margin-left: -91px;
+        }
+
+        .renderHolidayTable {
+            border-collapse: separate !important;
+            border-spacing: 0px 9px;
+            margin-top: -9px;
+            margin-left: 69px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .modalHoliday {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .alertYes {
+            background-color: lightgrey;
+            margin-left: 83px;
+            color: #3b3c3f;
+            padding: 6px 21px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .alertYes:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .alertNo:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .alertCancel:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .alertCancel {
+            background-color: lightgrey;
+            margin-left: 73px;
+            color: #3b3c3f;
+            padding: 6px 14px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .alertNo {
+            background-color: lightgrey;
+            margin-left: 73px;
+            color: #3b3c3f;
+            border-radius: 4px;
+            padding: 6px 25px;
+            border: 2px solid #a09a9a;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .modal-content {
+            width: 596px;
+        }
+
+        .alertYesHoliday {
+            background-color: lightgrey;
+            margin-left: 83px;
+            color: #3b3c3f;
+            padding: 6px 21px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .alertYesHoliday:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .alertNoHoliday:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .alertCancelHoliday:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .AddDescription:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+			width: 79px;
+        }
+
+        .alertDescription:hover {
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+			width:85px;
+        }
+		.alertSiteDescription:hover {
+			font-weight:600;
+            background-color: #2b85bc;
+            color: white;
+            border: 2px solid white;
+			width:85px;
+        }
+       
+
+        .alertCancelHoliday {
+            background-color: lightgrey;
+            margin-left: 73px;
+            color: #3b3c3f;
+            padding: 6px 14px;
+            border: 2px solid #a09a9a;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .alertNoHoliday {
+            background-color: lightgrey;
+            margin-left: 73px;
+            color: #3b3c3f;
+            border-radius: 4px;
+            padding: 6px 25px;
+            border: 2px solid #a09a9a;
+            cursor: pointer;
+            width: 78px;
+            height: 35px;
+        }
+
+        .applyDiv {
+            border-radius: 4px;
+            width: 271px;
+            height: 31px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+
+            background-color: #3e3f3f;
+        }
+
+        .holidayP {
+            padding: 3px;
+        }
+
+        .applyDiv:hover {
+            cursor: pointer;
+            background-color: lightseagreen;
+        }
+
+        .renderHolidayTable {
+            padding-top: 14px;
+        }
+    .IndiaHoliday{
+height:28px;
+width: 140px;
+text-shadow: 2px 2px 2px black;
+padding: 1px; color: white; font-weight: 600;
+text-align: center;
+margin-left: 32px;
+background-image: url("https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/blue_india.png");
+}

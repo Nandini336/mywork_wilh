@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/jquery.min.3.2.1.js"></script>
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/date.js"></script>
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/showmonth.js"></script>
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/jquery-ui.new.css">
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/jquery-ui.min.js"></script>
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/AvailabilitySheet.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/AvailabilitySheet.css" />
+    <script src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/jquery.mtz.monthpicker.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/daterangepicker.min.css" />
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/moment.js"></script>
+
+    <script type="text/javascript" src="/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/jquery.daterangepicker.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p style="font-weight:600;font-size:17px;">Selected Period is already planned,Do you want to overwrite/replan existing period?</p>
+            </br>
+            <p>Yes :Overwrite selected period</p>
+            </br>
+            <p>No :Updates only not planned period</p>
+            </br>
+            <p>Cancel :Do nothing</p>
+            <p></p>
+            </br>
+            <table>
+                <tr>
+                    <td>
+                        <div class="alertYes">
+                            <p class="yesP" style="font-weight:600;">Yes</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="alertNo">
+                            <p class="noP" style="font-weight:600;">No</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="alertCancel">
+                            <p class="cancelP" style="font-weight:600;">Cancel</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div id="descriptionHoliday" class="Descriptionmodal">
+        <div class="modal-content">
+            <p style="font-weight:600;font-size:17px;">Please Add Description</p>
+            </br>
+            <input class="descriptionData" type="text" name="AddDescription">
+            <div class="AddDescription">
+                <p class="Add" style="font-weight:600;margin-top:-2px;">Add</p>
+            </div>
+            <div class="alertDescription">
+                <p class="cancelDescription" style=" margin-top: -2px;margin-left: -7px;">Cancel</p>
+            </div>
+        </div>
+    </div>
+    <div id="OtherItemSite" class="OtherSitemodal">
+        <div class="modal-content">
+            <p style="font-weight:600;font-size:17px;">Please enter Availability Location</p>
+            </br>
+            <input class="descriptionSite" type="text" name="AddDescription">
+            <div class="SiteDescription">
+                <p class="Add" style="font-weight:600;margin-top:-2px;">Add</p>
+            </div>
+            <div class="alertSiteDescription">
+                <p class="cancelSiteDescription" style=" margin-top: -2px;margin-left: -7px;">Cancel</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalHoliday" class="modalHoliday">
+        <div class="modal-content">
+            <p style="font-weight:600;font-size:17px;">Selected Period is already planned,Do you want to overwrite/replan existing period?</p>
+            </br>
+            <p>Yes :Overwrite selected period</p>
+            </br>
+            <p>No :Updates only not planned period</p>
+            </br>
+            <p>Cancel :Do nothing</p>
+            <p></p>
+            </br>
+            <table>
+                <tr>
+                    <td>
+                        <div class="alertYesHoliday">
+                            <p class="yesP" style="font-weight:600;">Yes</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="alertNoHoliday">
+                            <p class="noP" style="font-weight:600;">No</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="alertCancelHoliday">
+                            <p class="cancelP" style="font-weight:600;">Cancel</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div id="bg_blocking_layer">
+        <div id="layout_container">
+            loading.....
+        </div>
+    </div>
+    <div class="container">
+        <div class="logo" style="background-color: #eadf67;margin-top: 10px;">
+            <img class="logoImage" src="/sites/ProjectWSSSA/Execution/SiteAssets/TimeSheet/bannerlogo.png" alt="Paris">
+
+        </div>
+
+        <h2 class="Heading" style="border-bottom:1px solid gray; padding-bottom:10px;padding: 5px 5px 10px; text-align: center;">SA Project Availability Plan</h2>
+
+
+        <table style="margin-top: 19px;">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <img class="imageClass" src="https://wilhelmsen.sharepoint.com/sites/ProjectWSSSA/Execution/SiteAssets/AvailabilitySheet/menu-alt-512.png" alt="Menu">
+                            </td>
+
+                            <td>
+                                <div class="dataClass">
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="nameLabel" style="font-size: 18px; float: left;">Name:</div>
+                                            </td>
+                                            <td>
+                                                <div><select id="names" class="dropDownClass"></select></div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="dateLabel">Date: </div>
+                                            </td>
+                                            <td>
+                                                <div> <input type="text" class="dateClass" name="datefilter" value="" /></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="colorDiv">Select Availability</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="codeDiv">
+
+
+                                                            <table class="renderColorTable">
+                                                                <tr class="renderColorHeader">
+                                                                </tr>
+                                                        </div>
+                                                    </td>
+                                                    </table>
+                                                </tr>
+
+                                            </table>
+
+                                            <h2 class="Heading" style="border-bottom:2px solid black;"></h2>
+
+
+                                            <div class="applyDiv">
+                                                <p class="holidayP">Public Holiday</p>
+                                            </div>
+
+                                            <div class="holidayClass" style="display:none;">
+
+                                                <div class="holidayDiv">
+
+
+                                                    <table class="renderHolidayTable">
+                                                        <tr class="renderHolidayHeader">
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                </div>
+
+
+                            </td>
+                            </tr>
+                            </table>
+
+                </td>
+
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="dateLabelNew">
+                                    <div for="startDate" class="dateDiv">Date :</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="datepickerClass"><input name="startDate" id="startDate" class="date-picker" /></div>
+                            </td>
+
+
+
+                        </tr>
+
+                        <tr>
+                            <div class="renderPlaceHolder">
+                                <div class="renderData">
+
+                                    <table class="renderTable">
+                                        <tr class="renderHeader">
+
+                                        </tr>
+
+
+                                    </table>
+                                    <div>
+                                    </div>
+                        </tr>
+                        <!-- <tr>
+			<div class="renderNamesDiv" >
+			<table class="renderNameTable">
+
+			</table>
+			</div>
+			</tr> -->
+
+
+                    </table>
+
+                </td>
+
+
+
+
+
+                </tr>
+
+
+                </table>
+
+                </div>
+</body>
+
+</html>
