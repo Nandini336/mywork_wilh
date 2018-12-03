@@ -1,0 +1,5 @@
+<system.net>
+		<defaultProxy useDefaultCredentials="true">
+			<proxy proxyaddress="http://10.30.0.155:8080" usesystemdefault="True"/>
+		</defaultProxy>
+	</system.net>
